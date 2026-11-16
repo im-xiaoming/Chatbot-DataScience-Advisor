@@ -147,10 +147,12 @@ class RecordItem:
         self.data = data
         
     def tolist(self) -> str:
+        "Return only page_content"
         return [self.data.page_content]
     
     def __getattr__(self, name):
         return self.data
+    
 
 class RecordList(list[RecordItem]):
     
@@ -158,22 +160,14 @@ class RecordList(list[RecordItem]):
         """Only take the page_content."""
         records = [rec.tolist()[0] for rec in self]
         return records
+    
+    def model_dump(self):
+        records = [rec.model_dump for rec in self]
+        return records
 
         
 
 class Record:
-    
-    # @staticmethod
-    # def build_records(docs: list[Document]) -> list[DocRecord]:
-    #     logging.info("Starting to build Record.")
-        
-    #     try:
-    #         records = [DocRecord(**doc.metadata) for doc in docs]
-    #         return records
-    #     except Exception as e:
-    #         logging.exception(f'Failed at build DocRecord: {e}')
-            
-    #     return []
     
     @staticmethod
     def build_chunk_records(docs: list[Document]) -> RecordList:

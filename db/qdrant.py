@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import logging
+import types
+from typing import Callable, Literal
 from qdrant_client import AsyncQdrantClient, models
 
 from rag.embeddings import EMBEDDING_DIMENSIONS
@@ -8,42 +10,48 @@ from config import QDrantConfig
 from .schemas import _PAYLOAD
 from common import logs
 from common import run_async
+from config import QDrantConfig
 
 logger = logging.getLogger(__name__)
 
 
-CLIENT = None
-
 DENSE, SPARSE = 'dense', 'sparse'
 
-def create_qdrant_client(config: QDrantConfig):
-    global CLIENT
+def create_qdrant_client(config: QDrantConfig) -> AsyncQdrantClient:
     try:
-        CLIENT = AsyncQdrantClient(
+        client = AsyncQdrantClient(
             location=config.host
         )
+        return client
     except Exception as e:
-        logger.exception("Error when init Qdrant Client.")
-    else:
-        logger.info("Qdrant Client created.")
-        
-    return CLIENT
+        logger.exception("Error when init Qdrant Client." + str(e))
 
 
-@run_async
-async def create_collection(
+async def _create_collection(
     *,
+    client: AsyncQdrantClient,
     collection_name: str,
-    size: int  = 1024
     ):
-    assert not EMBEDDING_DIMENSIONS, '".rag.embeddings.load_embedding_model" function must be called first before call "create_collection".'
+    global EMBEDDING_DIMENSIONS
+    if not EMBEDDING_DIMENSIONS:
+        from agent.models import load_embedding_model
+        from config import EmbeddingsConfig
+        
+        config = EmbeddingsConfig()
+        model = load_embedding_model(
+            model_name=config.model_name,
+            model_provider=config.model_provider
+        )
+        EMBEDDING_DIMENSIONS = len(model.embed_query("Hello!"))
     
-    if await CLIENT.collection_exists(collection_name=collection_name):
+    assert EMBEDDING_DIMENSIONS, '"load_embedding_model" function must be called first before call "create_collection".'
+    
+    if await client.collection_exists(collection_name=collection_name):
         logger.info(f'Collection "{collection_name}" already exists.')
         return
     
     try:
-        await CLIENT.create_collection(
+        await client.create_collection(
             collection_name=collection_name,
             vectors_config={
                 DENSE: models.VectorParams(size=EMBEDDING_DIMENSIONS, distance=models.Distance.COSINE)
@@ -51,7 +59,7 @@ async def create_collection(
             sparse_vectors_config={
                 SPARSE: models.SparseVectorParams(modifier=models.Modifier.IDF)
             },
-            timeout=600
+            timeout=600,
         )
     except Exception as e:
         logger.exception(f"Failed to create collection: {collection_name}. Error: {e}.")
@@ -59,14 +67,14 @@ async def create_collection(
         logger.info(f"Create collection {collection_name} successful.")
 
 
-@run_async
-async def create_payload(
+async def _create_payload(
     *,
+    client: AsyncQdrantClient,
     collection_name: str
 ):
     try:
         for field_name, field_schema in _PAYLOAD:
-            await CLIENT.create_payload_index(
+            await client.create_payload_index(
                 collection_name=collection_name,
                 field_name=field_name,
                 field_schema=field_schema,
@@ -79,15 +87,15 @@ async def create_payload(
         logger.exception("Create Payload successfully.")
 
 
-@run_async
-async def delete_collection(
+async def _delete_collection(
     *,
+    client: AsyncQdrantClient,
     collection_name: str
 ):
     try:
-        await CLIENT.delete_collection(
+        await client.delete_collection(
             collection_name=collection_name,
-            timeout=600
+            timeout=600,
         )
     except Exception as e:
         logger.exception(f'Failed to delete collection "{collection_name}". Error {e}.')
@@ -95,13 +103,14 @@ async def delete_collection(
         logger.info(f'Already delete collection "{collection_name}".')
 
 
-async def upsert(
+async def _upsert(
     *,
+    client: AsyncQdrantClient,
     collection_name: str,
-    points: models.PointsList
+    points: list[models.PointStruct]
 ):
     try:
-        await CLIENT.upsert(
+        await client.upsert(
             collection_name=collection_name,
             points=points,
             timeout=600,
@@ -117,15 +126,58 @@ class QuantModel:
     def __init__(
         self,
         collection_name: str,
-        client: AsyncQdrantClient | None = None,
+        client: AsyncQdrantClient | Callable[[QDrantConfig], None] | None = None,
         config: QDrantConfig | None = None
     ):
         self.collection_name = collection_name
-        self.client = client if client else create_qdrant_client(config=config)
+        self.config = config
+        self.client_instance = client
+        self.client = None
+        
+        if not self.config:
+            self.config = QDrantConfig()
+            
+    
+    def create_qdrant_client(self):
+        if isinstance(self.client, AsyncQdrantClient):
+            self.client = self.client_instance
+        elif isinstance(self.client_instance, types.FunctionType):
+            self.client = self.client_instance(self.config)
+        elif self.client_instance is None:
+            self.client = create_qdrant_client(config=self.config)
+            
+        assert self.client, "Client haven't created yet."
         
     @run_async
-    async def upsert(self, points):
-        await upsert(
+    async def upsert(self, points: list[models.PointStruct]):
+        if not self.client:
+            self.create_qdrant_client()
+           
+        await _upsert(
+            client=self.client,
             collection_name=self.collection_name,
             points = points
         )
+        
+    @run_async
+    async def delete_collection(self):
+        if not self.client:
+            self.create_qdrant_client()
+        await _delete_collection(client=self.client, collection_name=self.collection_name)
+        
+    @run_async
+    async def create_collection(self, create_payload=True):
+        if not self.client:
+            self.create_qdrant_client()
+        try:
+            await _create_collection(client=self.client,collection_name=self.collection_name)
+            if create_payload:
+                await _create_payload(client=self.client, collection_name=self.collection_name)
+        except Exception as e:
+            print("error: " + str(e))
+        
+    @run_async
+    async def create_payload(self):
+        if not self.client:
+            self.create_qdrant_client()
+        await _create_payload(client=self.client, collection_name=self.collection_name)

@@ -1,9 +1,7 @@
-from .qdrant import create_collection, create_payload, delete_collection, upsert
+from .qdrant import QuantModel, create_qdrant_client
 
 
 __all__ = [
-    'create_collection',
-    'create_payload',
-    'delete_collection',
-    'upsert'
+    'QuantModel',
+    'create_qdrant_client'
 ]

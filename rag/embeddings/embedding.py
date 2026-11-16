@@ -49,29 +49,6 @@ class ModelEmbeddings:
         self.maxsize = maxsize
         
         self.semaphore = asyncio.Semaphore(semaphore)
-        
-            
-    # async def _query(self, query: str, func: Callable[[str], list[float]]):
-    #     if query in self._cache:
-    #         logging.info("Query already cached. No embedding called.")
-    #         self._cache.move_to_end(query, last=True)
-    #         return self._cache[query]
-    #     else:
-    #         query_embed = torch.tensor(await func(query), dtype=torch.float32).to(self.device) # (N, 1)
-            
-    #         if len(self._cache) > 0:
-    #             embeds = torch.tensor(list(self._cache.values()), dtype=torch.float32).to(self.device) # (M, N)
-    #             cosine = embeds @ query_embed.t() # (M, 1)
-    #             value, index = cosine.cpu().max(dim=-1)
-    #             if value > self.threshold:
-    #                 logging.info("Query already cached. No embedding called.")
-    #                 return self._cache[self._cache.keys()[index]]
-    #         else:
-    #             logging.info("Caching new query.")
-    #             self._cache[query] = query_embed.cpu().tolist()
-    #             if len(self._cache) > self.maxsize:
-    #                 self._cache.popitem(last=False)
-    #             return self._cache[query]
     
     
     async def _query(self, query: str, func: Callable[[str], list[float]]):
@@ -109,11 +86,13 @@ class ModelEmbeddings:
         if batch_size < 1:
             raise ValueError("batch_size must be greater than zero")
         logger.info("Embedding %d documents in batches of %d.", len(documents), batch_size)
-        embeddings: list[list[float]] = []
+        embeddings = []
         async with self.semaphore:
             for start in range(0, len(documents), batch_size):
                 batch = documents[start:start + batch_size]
                 embeddings.extend(await self.embedding_model.aembed_documents(batch))
                 logger.info("Embedded %d/%d documents.", start + len(batch), len(documents))
         return embeddings
+
+
 

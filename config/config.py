@@ -18,12 +18,12 @@ class RecursiveCharacterTextSplitterConfig(Base):
     
     
 class EmbeddingsConfig(Base):
-    model_name: str = Field(default='qwen3-embedding:4b')
+    model_name: str = Field(default='embeddinggemma-2:latest')
     model_provider: str = Field(default='ollama')
     
     
 class QDrantConfig(Base):
-    host: str = Field('localhost')
+    host: str = Field(default='localhost')
     
     
 class CrossEncoderConfig(Base):
