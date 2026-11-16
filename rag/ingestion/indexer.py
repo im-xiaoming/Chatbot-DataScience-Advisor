@@ -12,8 +12,7 @@ from common import logs
 
 from rag.types import ChunkRecord
 from common import _NAMESPACE
-from db import QuantModel
-
+from db import QuantModel, DENSE, SPARSE
 
 logger = logging.getLogger(__name__)
 
@@ -22,13 +21,17 @@ def _point(
     *,
     id: uuid.UUID,
     vector: list[float],
+    sparse_vector: models.SparseVector | None = None,
     payload: models.Payload,
 ) -> models.PointStruct:
     try:
         return models.PointStruct(
             id=id,
-            vector=vector,
-            payload=payload
+            vector={
+                DENSE: vector,
+                SPARSE: sparse_vector
+            },
+            payload=payload,
         )
     except Exception as e:
         logger.exception("Failed to create PointStruct.")
@@ -55,13 +58,18 @@ class QdrantIndexer(QuantModel):
         )
     
     @staticmethod    
-    def build_points(records: list[ChunkRecord], embeddings: list[Embeddings]) -> list[models.PointStruct]:
+    def build_points(
+        records: list[ChunkRecord],
+        embeddings: list[Embeddings],
+        sparse_vector: list[models.SparseVector]
+    ) -> list[models.PointStruct]:
         points = []
-        for record, embedding in zip(records, embeddings, strict=True):
+        for record, embedding, sparse in zip(records, embeddings, sparse_vector, strict=True):
             points.append(
                 _point(
                     id=_create_point_id(record.chunk_id, record.page_content),
-                    vector={'dense': embedding},
+                    vector=embedding,
+                    sparse_vector=sparse,
                     payload=record.model_dump()
                 )
             )

@@ -5,7 +5,7 @@ import argparse
 
 from rag.ingestion.loaders import Splitter, Record
 from rag.ingestion.indexer import QdrantIndexer
-from rag.embeddings import ModelEmbeddings
+from rag.embeddings import ModelEmbeddings, SparseEmbedding
 
 from db import create_qdrant_client
 
@@ -31,14 +31,21 @@ if __name__ == '__main__':
     embedding_model = ModelEmbeddings(config=EmbeddingsConfig())
     embeddings = embedding_model.aembedding_documents(chunk_records.tolist())
     
+    
+    # build sparse vectors
+    sparse_embedding = SparseEmbedding(chunks=chunk_records.model_dump(), avg_search=True)
+    sparse_vectors = sparse_embedding.build_sparses()
+    
+    
     # qdrant
     indexer = QdrantIndexer(
         collection_name=args.collection_name,
         client=create_qdrant_client,
     )
-    indexer.create_collection(create_payload=True)
+    # indexer.create_collection(create_payload=True)
     points = indexer.build_points(
         records=chunk_records.model_dump(),
-        embeddings=embeddings
+        embeddings=embeddings,
+        sparse_vector=sparse_vectors
     )
     indexer.upsert(points=points)

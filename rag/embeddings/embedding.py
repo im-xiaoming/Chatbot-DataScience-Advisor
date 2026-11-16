@@ -7,13 +7,18 @@ import asyncio
 from collections import OrderedDict
 from typing import Optional, Callable, Literal
 
+from qdrant_client import models
+
 import config
 from common import run_async
 from rag.rerank import CrossEncoder
 from agent.models import load_embedding_model
 
 from langchain_core.embeddings import Embeddings
+from dataclasses import dataclass
 
+from .import helper
+from rag.types import ChunkRecord
 from common import logs
 
 
@@ -21,6 +26,23 @@ logger = logging.getLogger(__name__)
 
 EMBEDDING_DIMENSIONS = None
 
+
+class SparseEmbedding:
+    def __init__(self, chunks: list[ChunkRecord], avg_search: bool = False):
+        self.chunks = chunks
+        self.avgdl = None
+        if avg_search:
+            self.avgdl = helper.search_avgdl(chunks)
+    
+    def build_sparses(self) -> list[models.SparseVector]:
+        sparses = []
+        for chunk in self.chunks:
+            if not self.avgdl:
+                sparse = helper._TF(chunk)
+            else:
+                sparse = helper._TF(chunk, avgdl=self.avgdl)
+            sparses.append(sparse)
+        return sparses
 
 class ModelEmbeddings:
     
