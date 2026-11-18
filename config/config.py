@@ -20,7 +20,11 @@ class RecursiveCharacterTextSplitterConfig(Base):
 class EmbeddingsConfig(Base):
     model_name: str = Field(default='qwen3-embedding:4b')
     model_provider: str = Field(default='ollama')
-    
+
+
+class LLMConfig(Base):
+    model_name: str = Field(default='qwen3.5:4b')
+    model_provider: str = Field(default='ollama')    
     
 class QdrantConfig(Base):
     host: str = Field(default='localhost')
@@ -28,3 +32,10 @@ class QdrantConfig(Base):
     
 class CrossEncoderConfig(Base):
     model_name: str = Field(default='BAAI/bge-reranker-v2-m3')
+    
+    
+class QdrantDatabaseConfig(Base):
+    DATABASE_URL: str
+    POSTGRES_DB: str
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str

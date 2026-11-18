@@ -24,11 +24,14 @@ async def main():
     args = parser.parse_args()
     
     # ============================== splitter and load documents ==============================
-    # splitter = Splitter(recursive_config=RecursiveCharacterTextSplitterConfig())
+    splitter = Splitter(recursive_config=RecursiveCharacterTextSplitterConfig())
     
-    # documents = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)
-    # chunk_records = Record.build_chunk_records(docs=documents)
+    documents = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)[:1]
+    chunk_records = Record.build_chunk_records(docs=documents)
     
+    # =========================== injection ==========================================
+    for doc in documents:
+        pass
     
     # =========================== embeddings ================================================
     embedding_model = ModelEmbeddings(config=EmbeddingsConfig())
@@ -54,19 +57,28 @@ async def main():
     # await indexer.upsert(points=points)
     
     # ============================= query ==============================================
-    query = 'Quy định về buộc thôi học'
-    searcher = QdrantSearch(
-        collection_name=args.collection_name,
-        client=create_qdrant_client,
-    )
+    # query = 'Quy định về buộc thôi học'
+    # searcher = QdrantSearch(
+    #     collection_name=args.collection_name,
+    #     client=create_qdrant_client,
+    # )
     
-    response = await searcher.hybrid_search(
-        query_vector = await embedding_model.aembedding_query(query=query),
-        sparse_vector = SparseEmbedding.sparse_query(query=query, avgdl=256),
-    )
+    # response = await searcher.hybrid_search(
+    #     query_vector = await embedding_model.aembedding_query(query=query),
+    #     sparse_vector = SparseEmbedding.sparse_query(query=query, avgdl=256),
+    # )
 
-    print(response)
+    # print(response)
     
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    # asyncio.run(main())
+    from agent.models import load_llm_model
+    
+    model = load_llm_model(
+        model_name='qwen3.5:4b',
+        model_provider='ollama',
+        temperature=0
+    )
+    
+    print(model.invoke("hello"))
