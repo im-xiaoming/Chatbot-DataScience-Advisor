@@ -1,4 +1,4 @@
-from .qdrant import Base
+from .models import Base
 
 __all__ = [
     'Base'

@@ -45,6 +45,6 @@ class Injection:
                 return new_chunks
             
             except Exception as e:
-                pass
+                raise
                 
         
