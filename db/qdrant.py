@@ -6,18 +6,18 @@ from typing import Callable, Literal
 from qdrant_client import AsyncQdrantClient, models
 
 from rag.embeddings import EMBEDDING_DIMENSIONS
-from config import QDrantConfig
+from config import QdrantConfig
 from .schemas import _PAYLOAD
 from common import logs
 from common import run_async
-from config import QDrantConfig
+from config import QdrantConfig
 
 logger = logging.getLogger(__name__)
 
 
 DENSE, SPARSE = 'dense', 'sparse'
 
-def create_qdrant_client(config: QDrantConfig) -> AsyncQdrantClient:
+def create_qdrant_client(config: QdrantConfig) -> AsyncQdrantClient:
     try:
         client = AsyncQdrantClient(
             location=config.host
@@ -122,20 +122,22 @@ async def _upsert(
         logger.info("Upsert points successfully.")
 
 
-class QuantModel:
+class QdrantModel:
     def __init__(
         self,
         collection_name: str,
-        client: AsyncQdrantClient | Callable[[QDrantConfig], None] | None = None,
-        config: QDrantConfig | None = None
+        client: AsyncQdrantClient | Callable[[QdrantConfig], None] | None = None,
+        config: QdrantConfig | None = None
     ):
+        assert (client or config), "Client or Config must be not None."
+        
         self.collection_name = collection_name
         self.config = config
         self.client_instance = client
         self.client = None
         
         if not self.config:
-            self.config = QDrantConfig()
+            self.config = QdrantConfig()
             
     
     def create_qdrant_client(self):
@@ -148,7 +150,7 @@ class QuantModel:
             
         assert self.client, "Client haven't created yet."
         
-    @run_async
+        
     async def upsert(self, points: list[models.PointStruct]):
         if not self.client:
             self.create_qdrant_client()
@@ -159,13 +161,13 @@ class QuantModel:
             points = points
         )
         
-    @run_async
+
     async def delete_collection(self):
         if not self.client:
             self.create_qdrant_client()
         await _delete_collection(client=self.client, collection_name=self.collection_name)
         
-    @run_async
+
     async def create_collection(self, create_payload=True):
         if not self.client:
             self.create_qdrant_client()
@@ -176,7 +178,7 @@ class QuantModel:
         except Exception as e:
             print("error: " + str(e))
         
-    @run_async
+
     async def create_payload(self):
         if not self.client:
             self.create_qdrant_client()

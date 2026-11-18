@@ -13,16 +13,16 @@ class Base(BaseSettings):
     )
     
 class RecursiveCharacterTextSplitterConfig(Base):
-    chunk_size: int = Field(default=1024)
+    chunk_size: int = Field(default=1500)
     chunk_overlap: int = Field(default=200)
     
     
 class EmbeddingsConfig(Base):
-    model_name: str = Field(default='embeddinggemma-2:latest')
+    model_name: str = Field(default='qwen3-embedding:4b')
     model_provider: str = Field(default='ollama')
     
     
-class QDrantConfig(Base):
+class QdrantConfig(Base):
     host: str = Field(default='localhost')
     
     

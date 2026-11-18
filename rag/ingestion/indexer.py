@@ -5,14 +5,14 @@ import uuid
 from qdrant_client import models
 from langchain_core.embeddings import Embeddings
 from qdrant_client import AsyncQdrantClient
-from config import QDrantConfig
+from config import QdrantConfig
 
 import db
 from common import logs
 
 from rag.types import ChunkRecord
 from common import _NAMESPACE
-from db import QuantModel, DENSE, SPARSE
+from db import QdrantModel, DENSE, SPARSE
 
 logger = logging.getLogger(__name__)
 
@@ -44,12 +44,12 @@ def _create_point_id(chunk_id: str, page_content: str) -> uuid.UUID:
     )
  
  
-class QdrantIndexer(QuantModel):
+class QdrantIndexer(QdrantModel):
     def __init__(
         self,
         collection_name: str,
         client: AsyncQdrantClient | None = None,
-        config: QDrantConfig | None = None
+        config: QdrantConfig | None = None
     ):
         super().__init__(
             collection_name=collection_name,

@@ -1,7 +1,7 @@
-from .config import RecursiveCharacterTextSplitterConfig, EmbeddingsConfig, QDrantConfig
+from .config import RecursiveCharacterTextSplitterConfig, EmbeddingsConfig, QdrantConfig
 
 __all__ = [
     'RecursiveCharacterTextSplitterConfig',
     'EmbeddingsConfig',
-    'QDrantConfig'
+    'QdrantConfig'
 ]
