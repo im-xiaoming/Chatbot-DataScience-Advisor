@@ -21,9 +21,8 @@ class Injection:
         Session: Session,
         config: LLMConfig,
         temperature: float,
+        CONTEXT_USER_PROMPT: str,
         CONTEXT_SYSTEM_PROMPT: str,
-        CONTEXT_USER_PROMPT: str
-        
     ):
         self.session = Session()
         self.model = load_llm_model(

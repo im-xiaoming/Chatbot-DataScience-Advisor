@@ -32,7 +32,7 @@ async def main():
     splitter = Splitter(recursive_config=RecursiveCharacterTextSplitterConfig())
     
     documents, chunks = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)
-    doc_records = Record.build_doc_records(docs=documents)[:1]
+    doc_records = Record.build_doc_records(docs=documents)
     chunk_records = Record.build_chunk_records(docs=chunks)
     
     await save_to_db(docs=doc_records, chunks=chunk_records.model_dump())
@@ -46,31 +46,31 @@ async def main():
         CONTEXT_USER_PROMPT=CONTEXT_USER_PROMPT,
         CONTEXT_SYSTEM_PROMPT=CONTEXT_SYSTEM_PROMPT
     )
-    CONTEXT_USER_PROMPT = await injector.inject(docs=doc_records)
+    chunk_records = await injector.inject(docs=doc_records)
     
     
     # =========================== embeddings ================================================
-    # embedding_model = ModelEmbeddings(config=EmbeddingsConfig())
-    # docs_embeddings = await embedding_model.aembedding_documents(chunk_records.tolist())
+    embedding_model = ModelEmbeddings(config=EmbeddingsConfig())
+    docs_embeddings = await embedding_model.aembedding_documents(chunk_records.tolist())
     
     
     # build sparse vectors
-    # sparse_embedding = SparseEmbedding(chunks=chunk_records.model_dump(), avg_search=True)
-    # sparse_vectors = sparse_embedding.build_sparses()
+    sparse_embedding = SparseEmbedding(chunks=chunk_records.model_dump(), avg_search=True)
+    sparse_vectors = sparse_embedding.build_sparses()
     
     
     # ================================= qdrant ============================================
-    # indexer = QdrantIndexer(
-    #     collection_name=args.collection_name,
-    #     client=create_qdrant_client,
-    # )
-    # await indexer.create_collection(create_payload=True)
-    # points = indexer.build_points(
-    #     records=chunk_records.model_dump(),
-    #     embeddings=docs_embeddings,
-    #     sparse_vector=sparse_vectors
-    # )
-    # await indexer.upsert(points=points)
+    indexer = QdrantIndexer(
+        collection_name=args.collection_name,
+        client=create_qdrant_client,
+    )
+    await indexer.create_collection(create_payload=True)
+    points = indexer.build_points(
+        records=chunk_records.model_dump(),
+        embeddings=docs_embeddings,
+        sparse_vector=sparse_vectors
+    )
+    await indexer.upsert(points=points)
     
     # ============================= query ==============================================
     # query = 'Quy định về buộc thôi học'
