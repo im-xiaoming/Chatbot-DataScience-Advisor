@@ -1,0 +1,6 @@
+from .prompt import CONTEXT_SYSTEM_PROMPT, CONTEXT_USER_PROMPT
+
+__all__ = [
+    'CONTEXT_SYSTEM_PROMPT',
+    'CONTEXT_USER_PROMPT'
+]

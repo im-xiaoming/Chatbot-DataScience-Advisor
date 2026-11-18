@@ -42,7 +42,9 @@ def load_embedding_model(
 def load_llm_model(
     model_name: str,
     model_provider: Literal['ollama', 'openai'] = 'ollama',
-    temperature: float = 0.2
+    temperature: float = 0.2,
+    reasoning: bool = False,
+    num_ctx: int = 32_768
 ):
     if temperature < 0 or temperature > 1:
         raise ValueError("temperature must be between 0 and 1.")
@@ -50,7 +52,9 @@ def load_llm_model(
     model = init_chat_model(
         model=model_name,
         model_provider=model_provider,
-        temperature=temperature
+        temperature=temperature,
+        reasoning=reasoning,
+        num_ctx=num_ctx
     )
     return model
 

@@ -39,13 +39,6 @@ class DocumentQuery:
             await self.session.rollback()
             
     
-    async def query(self, stmt):
-        try:
-            return await self.session.execute(stmt)
-        except Exception as e:
-            logger.exception(str(e))
-            
-    
     async def insert(self, doc: DocRecord) -> ModelDoc:
         if await self.session.get(ModelDoc, doc.doc_id):
             logger.info(f"doc_id: {doc.doc_id} already in database. Update.")
@@ -61,6 +54,7 @@ class DocumentQuery:
         except Exception as e:
             logger.exception("Add to database error: " + str(e))
             await self.session.rollback()
+            raise
             
     
     async def insert_all(self, docs: list[DocRecord]) -> list[ModelDoc]:
@@ -71,6 +65,7 @@ class DocumentQuery:
         
         except Exception as e:
             logger.exception("Exception create_all: " + str(e))
+            raise
     
     
 class ChunkQuery:
@@ -96,13 +91,7 @@ class ChunkQuery:
         except Exception as e:
             logger.exception(str(e))
             await self.session.rollback()
-    
-    
-    async def query(self, stmt):
-        try:
-            return await self.session.execute(stmt)
-        except Exception as e:
-            logger.exception(str(e))
+            raise
             
 
     async def insert(self, chunk: ChunkRecord) -> ModelChunk:
@@ -120,6 +109,7 @@ class ChunkQuery:
         except Exception as e:
             logger.exception("Add to database error: " + str(e))
             await self.session.rollback()
+            raise
 
 
     async def insert_all(self, chunks: list[ChunkRecord]) -> list[ModelChunk]:
@@ -130,4 +120,5 @@ class ChunkQuery:
 
         except Exception as e:
             logger.exception("Exception create_all: " + str(e))
+            raise
     

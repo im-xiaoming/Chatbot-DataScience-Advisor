@@ -7,13 +7,17 @@ import argparse
 from rag.ingestion.loaders import Splitter, Record
 from rag.ingestion.indexer import QdrantIndexer
 from rag.embeddings import ModelEmbeddings, SparseEmbedding
+from rag.ingestion import Injection
 
 from rag.retrieval import QdrantSearch
 
 from db import create_qdrant_client
+from db.qdrant_db.session import create
 from utils import save_to_db
 
-from config import RecursiveCharacterTextSplitterConfig, EmbeddingsConfig, QdrantConfig
+from config import RecursiveCharacterTextSplitterConfig, EmbeddingsConfig, QdrantConfig, LLMConfig
+
+from agent.prompt import CONTEXT_SYSTEM_PROMPT, CONTEXT_USER_PROMPT
 
 
 DOCUMENTS_GLOB_PATH = r'./data/normalized/'
@@ -28,14 +32,22 @@ async def main():
     splitter = Splitter(recursive_config=RecursiveCharacterTextSplitterConfig())
     
     documents, chunks = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)
-    doc_records = Record.build_doc_records(docs=documents)
+    doc_records = Record.build_doc_records(docs=documents)[:1]
     chunk_records = Record.build_chunk_records(docs=chunks)
     
     await save_to_db(docs=doc_records, chunks=chunk_records.model_dump())
     
     # =========================== injection ==========================================
-    for doc in documents:
-        pass
+    engine, Session = create()
+    injector = Injection(
+        Session=Session,
+        config=LLMConfig(),
+        temperature=0,
+        CONTEXT_USER_PROMPT=CONTEXT_USER_PROMPT,
+        CONTEXT_SYSTEM_PROMPT=CONTEXT_SYSTEM_PROMPT
+    )
+    CONTEXT_USER_PROMPT = await injector.inject(docs=doc_records)
+    
     
     # =========================== embeddings ================================================
     # embedding_model = ModelEmbeddings(config=EmbeddingsConfig())
