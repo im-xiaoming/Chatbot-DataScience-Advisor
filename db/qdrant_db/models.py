@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from typing import Optional
-from sqlalchemy import create_engine, String, Text, Integer, ForeignKey, ARRAY, DateTime
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, relationship
+from sqlalchemy import String, Text, Integer, ForeignKey, ARRAY, DateTime
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 
 from .base import Base
@@ -11,7 +11,7 @@ from .base import Base
 class ModelDoc(Base):
     __tablename__ = 'docs'
     
-    doc_id: Mapped[int] = mapped_column(primary_key=True)
+    doc_id: Mapped[str] = mapped_column(primary_key=True)
     
     title: Mapped[str] = mapped_column(String())
     page_content: Mapped[str] = mapped_column(Text())
@@ -41,7 +41,7 @@ class ModelChunk(Base):
     __tablename__ = 'chunks'
     
     chunk_id: Mapped[str] = mapped_column(primary_key=True)
-    doc_id: Mapped[int] = mapped_column(ForeignKey('docs.doc_id'))
+    doc_id: Mapped[str] = mapped_column(ForeignKey('docs.doc_id'))
     
     title: Mapped[str] = mapped_column(String())
     page_content: Mapped[str] = mapped_column(Text())
@@ -53,11 +53,11 @@ class ModelChunk(Base):
     authority: Mapped[str] = mapped_column(String())
     language: Mapped[str] = mapped_column(String())
     region: Mapped[str] = mapped_column(String())
-    published_date: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
-    valid_until: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    published_date: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    valid_until: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
     license: Mapped[str] = mapped_column(String())
-    fetched_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
-    normalized_at: Mapped[datetime] = mapped_column(DateTime)
+    fetched_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    normalized_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     pipeline_version: Mapped[str] = mapped_column(String())
     
     # relationship

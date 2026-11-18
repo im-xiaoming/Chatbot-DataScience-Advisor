@@ -8,9 +8,6 @@ from datetime import datetime
 class Base(BaseModel):
     model_config = ConfigDict(extra='ignore', frozen=True)
     
-    def __getattr__(self, name):
-        return getattr(self, name)
-    
 
 class DocRecord(Base):
     doc_id: str

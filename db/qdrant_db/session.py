@@ -2,30 +2,38 @@ from __future__ import annotations
 
 import logging
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import (
+    create_async_engine,
+    async_sessionmaker,
+    AsyncSession,
+)
 
 from config import QdrantDatabaseConfig
 
 logger = logging.getLogger(__name__)
 
 
-config = QdrantDatabaseConfig()
 
-def create():
-    engine = create_engine(
+
+def create() -> tuple:
+    config = QdrantDatabaseConfig()
+    
+    engine = create_async_engine(
         url=config.DATABASE_URL,
         echo=True,
         pool_pre_ping=True,
         pool_size=10,
-        max_overflow=20
+        max_overflow=20,
+        connect_args={"timeout": 5}
     )
 
-    session = sessionmaker(
+    Session = async_sessionmaker(
         bind=engine,
         autoflush=False,
         expire_on_commit=False
     )
+    
+    return engine, Session
     
     
 

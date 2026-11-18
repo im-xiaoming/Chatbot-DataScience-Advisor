@@ -19,39 +19,36 @@ class DocumentQuery:
     def __init__(self, session: Session):
         self.session = session
         
-    def get_by_id(self, id: str) -> ModelDoc:
+    async def get_by_id(self, id: str) -> ModelDoc:
         stmt = select(ModelDoc).where(
             ModelDoc.doc_id == id
         )
-        return self.session.scalar(stmt)
+        return await self.session.scalar(stmt)
     
-    def query(self, stmt):
+    async def query(self, stmt):
         try:
-            return self.session.execute(stmt)
+            return await self.session.execute(stmt)
         except Exception as e:
             logger.exception(str(e))
             raise
     
-    def create(self, doc: dict | DocRecord) -> ModelDoc:
+    async def insert(self, doc: DocRecord) -> ModelDoc:
         try:
-            if isinstance(doc, dict):
-                d = ModelDoc(**doc)
-            else:
-                d = ModelDoc(**doc.model_dump())
+            d = ModelDoc(**doc.model_dump())
             self.session.add(d)
-            self.session.flush()
+            await self.session.flush()
             return d
         
         except Exception as e:
             logger.exception("Add to database error: " + str(e))
-            self.session.rollback()
+            await self.session.rollback()
             
             raise
     
-    def create_all(self, docs: list[dict | ChunkRecord]) -> list[ModelDoc]:
+    async def insert_all(self, docs: list[ChunkRecord]) -> list[ModelDoc]:
         try:
-            docs = [self.create(doc) for doc in docs]
-            self.session.flush()
+            docs = [await self.insert(doc) for doc in docs]
+            await self.session.flush()
             return docs
         
         except Exception as e:
@@ -63,39 +60,36 @@ class ChunkQuery:
     def __init__(self, session: Session):
         self.session = session
         
-    def get_by_id(self, chunk_id: str) -> ModelChunk | None:
+    async def get_by_id(self, chunk_id: str) -> ModelChunk | None:
         stmt = select(ModelChunk).where(
             ModelChunk.chunk_id == chunk_id
         )
-        return self.session.scalar(stmt)
+        return await self.session.scalar(stmt)
     
-    def query(self, stmt):
+    async def query(self, stmt):
         try:
-            return self.session.execute(stmt)
+            return await self.session.execute(stmt)
         except Exception as e:
             logger.exception(str(e))
             
             raise
 
-    def create(self, chunk: dict | ChunkRecord) -> ModelChunk:
+    async def insert(self, chunk: ChunkRecord) -> ModelChunk:
         try:
-            if isinstance(chunk, dict):
-                c = ModelChunk(**chunk)
-            else:
-                c = ModelChunk(**chunk.model_dump())
+            c = ModelChunk(**chunk.model_dump())
             self.session.add(c)
-            self.session.flush()
+            await self.session.flush()
             return c
 
         except Exception as e:
             logger.exception("Add to database error: " + str(e))
-            self.session.rollback()
+            await self.session.rollback()
             raise
 
-    def create_all(self, chunks: list[dict | ChunkRecord]) -> list[ModelChunk]:
+    async def insert_all(self, chunks: list[ChunkRecord]) -> list[ModelChunk]:
         try:
-            chunks = [self.create(chunk) for chunk in chunks]
-            self.session.flush()
+            chunks = [await self.insert(chunk) for chunk in chunks]
+            await self.session.flush()
             return chunks
 
         except Exception as e:
