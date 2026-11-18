@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-ket-noi-doanh-nghiep",
+  "url": "https://camnang.iuh.edu.vn/ket-noi-doanh-nghiep-va-gioi-thieu-viec-lam.php",
+  "final_url": "https://camnang.iuh.edu.vn/ket-noi-doanh-nghiep-va-gioi-thieu-viec-lam.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:08+00:00",
+  "file": "source.html",
+  "bytes": 29131,
+  "sha256": "cf153c5ee5ff36f0238c251e20d80e3de9b222deb27c14a8bf8c7d5a4a6efe85",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:08+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-cong-thong-tin-sinh-vien",
+  "url": "https://camnang.iuh.edu.vn/huong-dan-su-dung-cong-thong-tin-sinh-vien.php",
+  "final_url": "https://camnang.iuh.edu.vn/huong-dan-su-dung-cong-thong-tin-sinh-vien.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:11+00:00",
+  "file": "source.html",
+  "bytes": 31692,
+  "sha256": "fb1b4e0da482cc4d288146dcda7175999bcf4e8793c0b93c01bbe23b4e508825",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:11+00:00"
+}

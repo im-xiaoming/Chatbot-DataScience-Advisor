@@ -1,0 +1,13 @@
+{
+  "id": "iuh-bieu-mau-sinh-vien",
+  "url": "https://pdt.iuh.edu.vn/quy-trinh-giai-quyet-hoc-vu",
+  "final_url": "https://pdt.iuh.edu.vn/quy-trinh-giai-quyet-hoc-vu",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-10-31T09:03:16+00:00",
+  "file": "source.html",
+  "bytes": 136982,
+  "sha256": "261d4f87c37b8645f9b4d431acd511821892887191e55faa49188a1248d4db9e",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:03:16+00:00"
+}

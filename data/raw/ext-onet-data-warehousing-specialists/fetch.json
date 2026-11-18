@@ -1,0 +1,13 @@
+{
+  "id": "ext-onet-data-warehousing-specialists",
+  "url": "https://www.onetonline.org/link/summary/15-1243.01",
+  "final_url": "https://www.onetonline.org/link/summary/15-1243.01",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:22+00:00",
+  "file": "source.html",
+  "bytes": 219544,
+  "sha256": "d283a701127ebbab771e7b3a6237751ffacdbfe71f4d6b10cda31867fc64ed71",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:22+00:00"
+}

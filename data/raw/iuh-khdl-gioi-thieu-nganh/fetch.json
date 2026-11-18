@@ -1,0 +1,13 @@
+{
+  "id": "iuh-khdl-gioi-thieu-nganh",
+  "url": "https://fit.iuh.edu.vn/news.html@detail@188@3266@Nganh-Khoa-hoc-du-lieu",
+  "final_url": "https://fit.iuh.edu.vn/news.html@detail@188@3266@Nganh-Khoa-hoc-du-lieu",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T08:59:51+00:00",
+  "file": "source.html",
+  "bytes": 38499,
+  "sha256": "87c36ee8ddfe7be04fa266fd7727b9be90ab297e1a11f642d0a219ab3c4722c8",
+  "changed": true,
+  "first_seen_at": "2026-10-31T08:59:51+00:00"
+}

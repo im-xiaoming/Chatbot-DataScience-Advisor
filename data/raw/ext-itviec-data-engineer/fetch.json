@@ -1,0 +1,13 @@
+{
+  "id": "ext-itviec-data-engineer",
+  "url": "https://itviec.com/blog/data-engineer-la-gi/",
+  "final_url": "https://itviec.com/blog/data-engineer-la-gi/",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:13:49+00:00",
+  "file": "source.html",
+  "bytes": 188902,
+  "sha256": "c5f25332ae8b495380ab530a62766c4165f61e3d43620ef54e88525e3d53a2ee",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:13:49+00:00"
+}

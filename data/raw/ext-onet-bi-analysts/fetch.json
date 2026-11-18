@@ -1,0 +1,13 @@
+{
+  "id": "ext-onet-bi-analysts",
+  "url": "https://www.onetonline.org/link/summary/15-2051.01",
+  "final_url": "https://www.onetonline.org/link/summary/15-2051.01",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:20+00:00",
+  "file": "source.html",
+  "bytes": 226471,
+  "sha256": "647085fb73d754c80b2a44db949f46d54fd2a895f332be8198c0ca940fd217ee",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:20+00:00"
+}

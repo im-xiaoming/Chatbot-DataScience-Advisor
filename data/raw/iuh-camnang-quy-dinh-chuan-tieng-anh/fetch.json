@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-quy-dinh-chuan-tieng-anh",
+  "url": "https://camnang.iuh.edu.vn/quy-dinh-chuan-tieng-anh.php",
+  "final_url": "https://camnang.iuh.edu.vn/quy-dinh-chuan-tieng-anh.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:00:05+00:00",
+  "file": "source.html",
+  "bytes": 28953,
+  "sha256": "4dcb26ea86fc95b269a1feb7d7c4b4457d87ebb03c1a39de26e674e6d269a623",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:00:05+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "ext-itviec-bao-cao-luong-it-2025-2026",
+  "url": "https://itviec.com/bao-cao/luong-it-va-thi-truong-tuyen-dung-it-vietnam",
+  "final_url": "https://itviec.com/bao-cao/luong-it-va-thi-truong-tuyen-dung-it-vietnam",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-10-31T09:02:30+00:00",
+  "file": "source.html",
+  "bytes": 160994,
+  "sha256": "2738e483508aa263be26cb359f76b02108ae2ff6f1edd2b42d904572a102f021",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:30+00:00"
+}

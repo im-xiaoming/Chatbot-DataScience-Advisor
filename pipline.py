@@ -38,15 +38,15 @@ async def main():
     await save_to_db(docs=doc_records, chunks=chunk_records.model_dump())
     
     # =========================== injection ==========================================
-    engine, Session = create()
-    injector = Injection(
-        Session=Session,
-        config=LLMConfig(),
-        temperature=0,
-        CONTEXT_USER_PROMPT=CONTEXT_USER_PROMPT,
-        CONTEXT_SYSTEM_PROMPT=CONTEXT_SYSTEM_PROMPT
-    )
-    chunk_records = await injector.inject(docs=doc_records)
+    # engine, Session = create()
+    # injector = Injection(
+    #     Session=Session,
+    #     config=LLMConfig(),
+    #     temperature=0,
+    #     CONTEXT_USER_PROMPT=CONTEXT_USER_PROMPT,
+    #     CONTEXT_SYSTEM_PROMPT=CONTEXT_SYSTEM_PROMPT
+    # )
+    # chunk_records = await injector.inject(docs=doc_records)
     
     
     # =========================== embeddings ================================================

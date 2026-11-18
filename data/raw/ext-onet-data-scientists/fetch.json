@@ -1,0 +1,13 @@
+{
+  "id": "ext-onet-data-scientists",
+  "url": "https://www.onetonline.org/link/summary/15-2051.00",
+  "final_url": "https://www.onetonline.org/link/summary/15-2051.00",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:18+00:00",
+  "file": "source.html",
+  "bytes": 206495,
+  "sha256": "0dae48620abde5b87ec181eba0673cdfdb15a74ea20697221e25e5476d4831a8",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:18+00:00"
+}

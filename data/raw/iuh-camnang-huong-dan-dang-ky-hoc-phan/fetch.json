@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-huong-dan-dang-ky-hoc-phan",
+  "url": "https://camnang.iuh.edu.vn/huong-dan-dang-ky-hoc-phan.php",
+  "final_url": "https://camnang.iuh.edu.vn/huong-dan-dang-ky-hoc-phan.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:01:39+00:00",
+  "file": "source.html",
+  "bytes": 30911,
+  "sha256": "ae2b27687c9d00d97c95b08cf0e87d3e8d8e493800a46f69ee51b013ce8d1fb9",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:01:39+00:00"
+}

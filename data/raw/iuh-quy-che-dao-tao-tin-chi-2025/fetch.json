@@ -1,0 +1,13 @@
+{
+  "id": "iuh-quy-che-dao-tao-tin-chi-2025",
+  "url": "https://pdt.iuh.edu.vn/quy-che-dao-tao",
+  "final_url": "https://pdt.iuh.edu.vn/quy-che-dao-tao",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-10-31T09:03:06+00:00",
+  "file": "source.html",
+  "bytes": 257361,
+  "sha256": "d889928b674ebf860a4d2c0686b68e5cca9e0945a54cf118935ddb9ca6ea98a0",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:03:06+00:00"
+}

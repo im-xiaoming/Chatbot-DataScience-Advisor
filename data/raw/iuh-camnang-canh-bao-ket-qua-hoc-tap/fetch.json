@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-canh-bao-ket-qua-hoc-tap",
+  "url": "https://camnang.iuh.edu.vn/canh-bao-ket-qua-hoc-tap.php",
+  "final_url": "https://camnang.iuh.edu.vn/canh-bao-ket-qua-hoc-tap.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:00:10+00:00",
+  "file": "source.html",
+  "bytes": 26225,
+  "sha256": "57dabc527d380ab9e4033774b63ff03407fcf58b0aa1c5d885384d36b0a966de",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:00:10+00:00"
+}
