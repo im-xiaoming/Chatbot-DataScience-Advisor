@@ -11,6 +11,7 @@ from rag.embeddings import ModelEmbeddings, SparseEmbedding
 from rag.retrieval import QdrantSearch
 
 from db import create_qdrant_client
+from utils import save_to_db
 
 from config import RecursiveCharacterTextSplitterConfig, EmbeddingsConfig, QdrantConfig
 
@@ -26,15 +27,18 @@ async def main():
     # ============================== splitter and load documents ==============================
     splitter = Splitter(recursive_config=RecursiveCharacterTextSplitterConfig())
     
-    documents = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)[:1]
-    chunk_records = Record.build_chunk_records(docs=documents)
+    documents, chunks = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)
+    doc_records = Record.build_doc_records(docs=documents)
+    chunk_records = Record.build_chunk_records(docs=chunks)
+    
+    await save_to_db(docs=doc_records, chunks=chunk_records.model_dump())
     
     # =========================== injection ==========================================
     for doc in documents:
         pass
     
     # =========================== embeddings ================================================
-    embedding_model = ModelEmbeddings(config=EmbeddingsConfig())
+    # embedding_model = ModelEmbeddings(config=EmbeddingsConfig())
     # docs_embeddings = await embedding_model.aembedding_documents(chunk_records.tolist())
     
     
@@ -72,13 +76,4 @@ async def main():
     
 
 if __name__ == '__main__':
-    # asyncio.run(main())
-    from agent.models import load_llm_model
-    
-    model = load_llm_model(
-        model_name='qwen3.5:4b',
-        model_provider='ollama',
-        temperature=0
-    )
-    
-    print(model.invoke("hello"))
+    asyncio.run(main())

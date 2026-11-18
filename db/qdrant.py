@@ -25,7 +25,7 @@ def create_qdrant_client(config: QdrantConfig) -> AsyncQdrantClient:
         return client
     except Exception as e:
         logger.exception("Error when init Qdrant Client." + str(e))
-        raise
+
 
 
 async def _create_collection(
@@ -64,7 +64,7 @@ async def _create_collection(
         )
     except Exception as e:
         logger.exception(f"Failed to create collection: {collection_name}. Error: {e}.")
-        raise
+
     else:
         logger.info(f"Create collection {collection_name} successful.")
 
@@ -85,7 +85,7 @@ async def _create_payload(
             )
     except Exception as e:
         logger.exception("Failed to create Payload.")
-        raise
+
     else:    
         logger.exception("Create Payload successfully.")
 
@@ -103,7 +103,7 @@ async def _delete_collection(
     except Exception as e:
         logger.exception(f'Failed to delete collection "{collection_name}". Error {e}.')
         
-        raise
+
     else:
         logger.info(f'Already delete collection "{collection_name}".')
 
@@ -123,7 +123,7 @@ async def _upsert(
         )
     except Exception as e:
         logger.exception(f'Failed to upsert points. Collection name: "{collection_name}". Error: {e}.')
-        raise
+
     else:
         logger.info("Upsert points successfully.")
 
@@ -183,7 +183,6 @@ class QdrantModel:
                 await _create_payload(client=self.client, collection_name=self.collection_name)
         except Exception as e:
             logger.exception("error: " + str(e))
-            raise
         
 
     async def create_payload(self):
