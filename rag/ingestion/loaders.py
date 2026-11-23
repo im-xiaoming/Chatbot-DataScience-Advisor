@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import re
 import logging
+from collections import Counter
+from datetime import date
+from urllib.parse import urlsplit
 
 from typing import Optional
 from pathlib import Path
@@ -41,6 +44,61 @@ def _to_json(page_content: str) -> dict:
 
 def _content_standardized(page_content: str) -> list[Document]:
     return re.sub(r'<!--\s*(\w+)\s*(\d*)\s*-->', '', page_content).strip()
+
+
+def review_document(
+    metadata: dict[str, str], body: str
+) -> tuple[str, list[str]]:
+    errors: list[str] = []
+
+    for field in ("doc_id", "title", "url", "category", "publisher"):
+        if not metadata.get(field, "").strip():
+            errors.append(f"Thiếu {field}")
+
+    url = metadata.get("url", "").strip()
+    if url:
+        try:
+            source = urlsplit(url)
+            if source.scheme not in ("http", "https") or not source.hostname:
+                errors.append("URL nguồn phải có giao thức HTTP(S) và tên miền")
+        except ValueError:
+            errors.append("URL nguồn sai định dạng")
+
+    if not re.sub(r"<!--.*?-->", "", body, flags=re.DOTALL).strip():
+        errors.append("Nội dung tài liệu rỗng")
+
+    dates: dict[str, date] = {}
+    for field in ("published_date", "valid_until"):
+        value = metadata.get(field, "").strip()
+        if not value:
+            continue
+        try:
+            parsed = date.fromisoformat(value)
+            if parsed.isoformat() != value:
+                raise ValueError
+            dates[field] = parsed
+        except ValueError:
+            errors.append(f"{field} phải là ngày hợp lệ dạng YYYY-MM-DD")
+
+    if (
+        "published_date" in dates
+        and "valid_until" in dates
+        and dates["valid_until"] < dates["published_date"]
+    ):
+        errors.append("Ngày hết hiệu lực sớm hơn ngày ban hành")
+
+    if errors:
+        return "needs_fix", errors
+    if metadata.get("needs_review", "").strip().lower() == "true":
+        return "pending_review", ["Cần đối chiếu với nguồn gốc"]
+    return "passed_checks", []
+
+
+def _review_markdown(text: str) -> tuple[str, list[str]]:
+    frontmatter = re.match(r"\A---\n(.*?)\n---(?:\n|$)", text, re.DOTALL)
+    if frontmatter is None:
+        return "needs_fix", ["Thiếu khối metadata đầu tệp"]
+    return review_document(_to_json(frontmatter[1]), text[frontmatter.end():])
 
 
 def _build_section_path(docs: list[Document]) -> list[Document]:
@@ -109,6 +167,9 @@ class Splitter:
     
     def split_document(self, path: str) -> list[Document]:
         text = self._load(path)
+        return self._split_text(text)
+
+    def _split_text(self, text: str | None) -> list[Document]:
         if text:
             docs = self._markdown_text_splitter(text)
             docs = self._rebuild_docs(docs)
@@ -132,12 +193,84 @@ class Splitter:
         return []
             
     
-    def split_documents(self, glob_path: str) -> list[Document]:
+    def split_documents(
+        self, glob_path: str, *, review_only: bool = False, checked_only: bool = False
+    ) -> list[Document]:
         logging.info("Starting to split documents.")
-        docs: list[Document] = []
+        sources: list[tuple[Path, str, str | None, str | None]] = []
+        targets: dict[str, list[str | None]] = {}
         for file in Path(glob_path).rglob('*.md'):
-            docs.extend(self.split_document(file))
-        logging.info("Split documents finished.")
+            text = self._load(file)
+            if text is None or (not text and not review_only):
+                continue
+            frontmatter = re.match(r"\A---\n(.*?)\n---(?:\n|$)", text, re.DOTALL)
+            metadata = _to_json(frontmatter[1]) if frontmatter else {}
+            doc_id = metadata.get('doc_id')
+            duplicate_of = metadata.get('duplicate_of')
+            sources.append((file, text, doc_id, duplicate_of))
+            if doc_id:
+                targets.setdefault(doc_id, []).append(duplicate_of)
+
+        skipped: dict[Path, str] = {}
+        for file, _, doc_id, duplicate_of in sources:
+            if not duplicate_of:
+                continue
+            visited = {doc_id}
+            target = duplicate_of
+            while True:
+                if target in visited:
+                    raise ValueError(f"{file}: duplicate_of cycle at {target!r}")
+                matches = targets.get(target, [])
+                if len(matches) != 1:
+                    raise ValueError(
+                        f"{file}: duplicate_of target {target!r} matches {len(matches)} documents"
+                    )
+                next_target = matches[0]
+                if not next_target:
+                    skipped[file] = target
+                    break
+                visited.add(target)
+                target = next_target
+
+        if review_only:
+            counts: Counter[str] = Counter()
+            for file, text, _, _ in sources:
+                if file in skipped:
+                    counts["duplicate"] += 1
+                    print(f"[duplicate] {file} -> {skipped[file]}")
+                    continue
+
+                status, reasons = _review_markdown(text)
+
+                counts[status] += 1
+                detail = f" | {' / '.join(reasons)}" if reasons else ""
+                print(f"[{status}] {file}{detail}")
+
+            print("Tổng hợp")
+            for status, count in sorted(counts.items()):
+                print(f"  {status} = {count}")
+            return []
+
+        docs: list[Document] = []
+        for file, text, doc_id, _ in sources:
+            if file in skipped:
+                logger.info(
+                    "Skipping %s: duplicate_of resolves to %s.",
+                    doc_id or file,
+                    skipped[file],
+                )
+                continue
+            if checked_only:
+                status, reasons = _review_markdown(text)
+                if status != "passed_checks":
+                    logger.info("Skipping %s [%s]: %s", file, status, " / ".join(reasons))
+                    continue
+            docs.extend(self._split_text(text))
+        logger.info(
+            "Processed %d documents, skipped %d duplicates.",
+            len(sources) - len(skipped),
+            len(skipped),
+        )
         return docs
 
 
