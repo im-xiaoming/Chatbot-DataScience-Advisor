@@ -1,0 +1,504 @@
+{
+  "dataset": "Nguồn bổ sung cho chatbot tư vấn lộ trình học Khoa học dữ liệu IUH",
+  "collected_on": "2026-11-24",
+  "curriculum_file": "data/structured/iuh-khdl-ke-hoach-dao-tao-2023.json",
+  "sources": {
+    "iuh_plan_2023": {
+      "publisher": "Khoa Công nghệ Thông tin, IUH",
+      "type": "official_curriculum",
+      "url": "https://fit.iuh.edu.vn/upload/files/Chuong%20trinh%20khung%20_%202023(1).pdf"
+    },
+    "iuh_plan_2026_163": {
+      "publisher": "Cổng chương trình đào tạo IUH",
+      "type": "official_curriculum",
+      "url": "https://ctdt.iuh.edu.vn/",
+      "locator": "Khoa học máy tính - Khoa học dữ liệu, khóa 2026–2027, bản 163 tín chỉ",
+      "evidence": "Ảnh chụp trang do người dùng cung cấp",
+      "local_snapshot": "data/structured/iuh-khdl-ke-hoach-dao-tao-2026-163tc.json"
+    },
+    "iuh_admissions_2026": {
+      "publisher": "IUH",
+      "type": "official_admissions_notice",
+      "url": "https://tuyensinh.iuh.edu.vn/QC/iuh-thong-bao-tuyen-sinh-2026.pdf",
+      "locator": "Trang 4, dòng 13 và 14"
+    },
+    "iuh_program_outcomes": {
+      "publisher": "Khoa Công nghệ Thông tin, IUH",
+      "type": "official_program_outcomes",
+      "url": "https://fit.iuh.edu.vn/news.html@detail@188@3266@Nganh-Khoa-hoc-du-lieu",
+      "local_snapshot": "data/normalized/curriculum/iuh-khdl-gioi-thieu-nganh.md"
+    },
+    "iuh_graduation_regulation": {
+      "publisher": "Phòng Đào tạo, IUH",
+      "type": "official_university_regulation",
+      "url": "https://pdt.iuh.edu.vn/quy-che-dao-tao",
+      "locator": "Quy chế đào tạo tín chỉ ban hành năm 2025, Điều 23 và Bảng 4"
+    },
+    "iuh_admissions_plan_2026": {
+      "publisher": "IUH",
+      "type": "official_admissions_plan",
+      "url": "https://tuyensinh.iuh.edu.vn/Files_thongBao/IUH-de-an-tuyensinh-2026-dang-web.pdf",
+      "locator": "Trang 9, mục 24 và 25"
+    },
+    "iuh_english_placement_2026": {
+      "publisher": "Phòng Đào tạo, IUH",
+      "type": "official_placement_notice",
+      "url": "https://pdt.iuh.edu.vn/tra-cuu-thong-tin-thi-tieng-anh",
+      "locator": "Ghi chú dành cho sinh viên khóa 22"
+    },
+    "iuh_digital_library": {
+      "publisher": "Thư viện số IUH",
+      "type": "official_library_catalog",
+      "url": "https://thuvienso.iuh.edu.vn/TaiLieuSo2TaiLieuBoTap.aspx?Id=9",
+      "locator": "Bộ sưu tập Giáo trình IUH"
+    },
+    "topcv_sonat_2248994": {
+      "publisher": "SonatGame Studio, đăng trên TopCV",
+      "type": "employer_job_posting",
+      "url": "https://www.topcv.vn/viec-lam/data-analyst-intern-game-industry/2248994.html"
+    },
+    "itviec_abc_5514": {
+      "publisher": "Abc Studio Việt Nam, đăng trên ITviec",
+      "type": "employer_job_posting",
+      "url": "https://itviec.com/it-jobs/internship-data-operations-engineer-python-sql-abc-studio-viet-nam-5514?lab_feature=preview_jd_page"
+    },
+    "itviec_mb_4409": {
+      "publisher": "MB Bank, đăng trên ITviec",
+      "type": "employer_job_posting",
+      "url": "https://itviec.com/viec-lam-it/mb-trainee-ai-engineer-fresher-intern-mb-bank-4409?lab_feature=preview_jd_page"
+    },
+    "adecco_salary_2026": {
+      "publisher": "Adecco Vietnam",
+      "type": "publisher_salary_report",
+      "url": "https://www.adecco.com/-/jssmedia/project/adecco/adeccovn/pdf/adecco-vietnam-salary-guide-2026.pdf",
+      "locator": "Trang in 48, bảng Software, dòng Machine Learning Engineer",
+      "published_on": "2026-03-20"
+    },
+    "itviec_etc_3448": {
+      "publisher": "ETC Technology Systems, đăng trên ITviec",
+      "type": "employer_job_posting",
+      "url": "https://itviec.com/it-jobs/data-analyst-sql-powerbi-looker-etc-technology-systems-3448"
+    },
+    "itviec_finpros_4018": {
+      "publisher": "FINPROS, đăng trên ITviec",
+      "type": "employer_job_posting",
+      "url": "https://itviec.com/viec-lam-it/data-science-intern-on-site-finpros-4018"
+    },
+    "itviec_momo_3815": {
+      "publisher": "M_Service (MoMo), đăng trên ITviec",
+      "type": "employer_job_posting",
+      "url": "https://itviec.com/it-jobs/lead-sr-machine-learning-engineer-python-pytorch-ai-m_service-momo-3815?lab_feature=preview_jd_page"
+    },
+    "itviec_savills_1301": {
+      "publisher": "Savills Vietnam, đăng trên ITviec",
+      "type": "employer_job_posting",
+      "url": "https://itviec.com/viec-lam-it/fabric-data-engineer-etl-elt-pyspark-python-azure-savills-vietnam-1301"
+    },
+    "itviec_salary_2025_2026": {
+      "publisher": "ITviec",
+      "type": "publisher_salary_report",
+      "url": "https://itviec.com/report/vietnam-it-salary-and-recruitment-market",
+      "locator": "Bảng Median Salary, nhóm Data Analytics"
+    },
+    "itviec_q3_2026": {
+      "publisher": "ITviec",
+      "type": "platform_market_report",
+      "url": "https://marketing.itviec.com/insight_article_q3_2026"
+    },
+    "itviec_ai_2026": {
+      "publisher": "ITviec",
+      "type": "publisher_survey",
+      "url": "https://itviec.com/blog/bao-cao-tac-dong-ai-tuyen-dung-it-viet-nam-2026/",
+      "published_on": "2026-10-30"
+    }
+  },
+  "cohorts": [
+    {
+      "admission_year": 2023,
+      "program_name": "Khoa học dữ liệu",
+      "program_code": "7460108",
+      "curriculum_status": "official_plan_available",
+      "source_ids": ["iuh_plan_2023", "iuh_program_outcomes"]
+    },
+    {
+      "admission_year": 2026,
+      "program_name": "Khoa học dữ liệu",
+      "admission_group": "Nhóm ngành Công nghệ thông tin",
+      "admission_codes": {"standard": "7480201", "enhanced_english": "7480201C"},
+      "curriculum_status": "official_plan_available_for_163_credit_variant",
+      "source_ids": ["iuh_admissions_2026", "iuh_admissions_plan_2026", "iuh_plan_2026_163"],
+      "curriculum_variants": [
+        {"planned_credits": 163, "status": "course_table_transcribed", "source_id": "iuh_plan_2026_163"},
+        {"planned_credits": 174, "status": "listed_course_table_unverified"}
+      ],
+      "missing": ["Chi tiết bản 174 tín chỉ", "Chuẩn đầu ra, ghi chú cuối bảng và điều kiện tốt nghiệp ngoài bảng học phần"],
+      "official_lookup_urls": ["https://ctdt.iuh.edu.vn/", "https://sv.iuh.edu.vn/"]
+    }
+  ],
+  "program_outcomes": {
+    "admission_year": 2023,
+    "source_id": "iuh_program_outcomes",
+    "level": "program",
+    "items": {
+      "ELOa": "Phân tích nhu cầu của tổ chức liên quan đến bài toán khoa học dữ liệu.",
+      "ELOb": "Thu thập, đánh giá và quản lý dữ liệu phục vụ giải quyết bài toán.",
+      "ELOc": "Lựa chọn, áp dụng và đánh giá phương pháp, mô hình.",
+      "ELOd": "Diễn giải và đánh giá kết quả phân tích.",
+      "ELOe": "Truyền đạt thông tin về dữ liệu phù hợp với người nghe.",
+      "ELOf": "Chuyển kết quả phân tích và mô hình thành đề xuất hành động cho doanh nghiệp.",
+      "ELOg": "Làm việc có trách nhiệm, chuyên nghiệp và hợp tác với đồng đội."
+    }
+  },
+  "course_to_career": {
+    "admission_year": 2023,
+    "evidence_status": "inferred_pending_course_syllabus",
+    "interpretation": "Gợi ý theo tên học phần, năng lực cấp chương trình và nhu cầu công việc trong các tin mẫu. Cần đề cương từng môn để xác nhận nội dung, công cụ và chuẩn đầu ra thực tế của môn.",
+    "mappings": [
+      {"course_code": "2101436", "skill_focus": "Nền tảng cơ sở dữ liệu", "role_ids": ["data_analyst", "data_engineer"], "source_ids": ["iuh_plan_2023", "itviec_etc_3448", "itviec_savills_1301"]},
+      {"course_code": "2101678", "skill_focus": "Trực quan hóa, trình bày kết quả phân tích", "role_ids": ["data_analyst"], "source_ids": ["iuh_plan_2023", "iuh_program_outcomes", "itviec_etc_3448"]},
+      {"course_code": "2101683", "skill_focus": "Truy vấn cơ sở dữ liệu", "role_ids": ["data_analyst", "data_engineer"], "source_ids": ["iuh_plan_2023", "itviec_etc_3448", "itviec_savills_1301"]},
+      {"course_code": "2101861", "skill_focus": "Nền tảng kỹ thuật dữ liệu", "role_ids": ["data_engineer"], "source_ids": ["iuh_plan_2023", "itviec_savills_1301"]},
+      {"course_code": "2101864", "skill_focus": "Xác suất ứng dụng trong khoa học dữ liệu", "role_ids": ["data_scientist"], "source_ids": ["iuh_plan_2023", "itviec_finpros_4018"]},
+      {"course_code": "2101631", "skill_focus": "Kiến thức nền tảng về mô hình học máy", "role_ids": ["data_scientist", "ml_engineer"], "source_ids": ["iuh_plan_2023", "iuh_program_outcomes", "itviec_finpros_4018", "itviec_momo_3815"]},
+      {"course_code": "2101650", "skill_focus": "Học sâu và mạng nơ-ron", "role_ids": ["data_scientist", "ml_engineer"], "source_ids": ["iuh_plan_2023", "itviec_finpros_4018", "itviec_momo_3815"]},
+      {"course_code": "2101724", "skill_focus": "Nền tảng xử lý và lưu trữ dữ liệu", "role_ids": ["data_engineer"], "source_ids": ["iuh_plan_2023", "itviec_savills_1301"]}
+    ]
+  },
+  "detailed_syllabi": {
+    "status": "applicable_syllabi_unverified",
+    "reason": "Chưa tìm thấy đề cương công khai đã xác nhận áp dụng cho chương trình Khoa học dữ liệu. Tài liệu của chương trình liên thông Kỹ thuật máy tính có học phần cùng tên Hệ cơ sở dữ liệu nhưng thuộc chương trình khác.",
+    "priority_codes_from_2023_plan": ["2101622", "2101436", "2101864", "2101678", "2101631", "2101650", "2101694"],
+    "needed_fields": ["Mã học phần", "Khóa và phiên bản áp dụng", "Chủ đề giảng dạy", "Chuẩn đầu ra học phần", "Giáo trình chính và tài liệu tham khảo"],
+    "official_lookup_urls": ["https://fit.iuh.edu.vn/", "https://ctdt.iuh.edu.vn/"]
+  },
+  "textbook_catalog": {
+    "source_id": "iuh_digital_library",
+    "scope": "Biểu ghi thư mục IUH. Mã môn gợi ý dựa trên tương đồng chủ đề với kế hoạch 2023. Cần đề cương đúng khóa để xác nhận sách chính hay tài liệu tham khảo.",
+    "matched_curriculum_cohort": "2023",
+    "items": [
+      {
+        "id": "121309",
+        "title": "Giáo trình hệ quản trị cơ sở dữ liệu MS SQL server",
+        "authors": ["Nguyễn Ngọc Quân", "Hoàng Đơ", "Nguyễn Thanh Tùng", "Phạm Trường Quân"],
+        "year": 2023,
+        "edition": null,
+        "pages": 137,
+        "related_course_codes": ["2101436", "2101683"],
+        "syllabus_use": null,
+        "url": "https://thuvienso.iuh.edu.vn/TraCuuTaiLieuSo2XemChiTiet.aspx?Id=121309"
+      },
+      {
+        "id": "121678",
+        "title": "Giáo trình xác suất cho khoa học dữ liệu",
+        "authors": ["Huỳnh Trung Hiếu", "Nguyễn Chí Kiên", "Nguyễn Hữu Tình", "Lê Phúc Lữ"],
+        "year": 2024,
+        "edition": null,
+        "pages": 314,
+        "related_course_codes": ["2101864"],
+        "syllabus_use": null,
+        "url": "https://thuvienso.iuh.edu.vn/TraCuuTaiLieuSo2XemChiTiet.aspx?Id=121678"
+      },
+      {
+        "id": "124074",
+        "title": "Giáo trình học sâu",
+        "authors": ["Đặng Thị Phúc", "Nguyễn Chí Kiên", "Nguyễn Ngọc Lễ"],
+        "year": 2025,
+        "edition": null,
+        "pages": 241,
+        "related_course_codes": ["2101650"],
+        "syllabus_use": null,
+        "url": "https://thuvienso.iuh.edu.vn/TraCuuTaiLieuSo2XemChiTiet.aspx?Id=124074"
+      },
+      {
+        "id": "122889",
+        "title": "Giáo trình thị giác máy tính",
+        "authors": ["Nguyễn Hoanh", "Ngô Thanh Quyền", "Lâm Bình Minh", "Vũ Đức Vạn"],
+        "year": 2025,
+        "edition": null,
+        "pages": 280,
+        "related_course_codes": ["2101694"],
+        "syllabus_use": null,
+        "url": "https://thuvienso.iuh.edu.vn/TraCuuTaiLieuSo2XemChiTiet.aspx?Id=122889"
+      },
+      {
+        "id": "121165",
+        "title": "Giáo trình nhận dạng mẫu",
+        "authors": ["Huỳnh Trung Hiếu"],
+        "year": 2023,
+        "edition": null,
+        "pages": 202,
+        "related_course_codes": ["2101631", "2101694"],
+        "syllabus_use": null,
+        "url": "https://thuvienso.iuh.edu.vn/TraCuuTaiLieuSo2XemChiTiet.aspx?Id=121165"
+      },
+      {
+        "id": "122046",
+        "title": "Giáo trình pháp luật đại cương: Dành cho sinh viên các trường Đại học không chuyên ngành Luật",
+        "authors": ["Lê Minh Hùng", "Đinh Thị Cẩm Hà", "Huỳnh Minh Luân", "Nguyễn Quang Đạo", "Lê Văn Thắng", "Nguyễn Thị Hải Vân", "Lương Thị Thùy Dương", "Trần Thị Tâm Hảo", "Đào Thị Nguyệt", "Nguyễn Thành Minh Chánh", "Nguyễn Thị Bảo Trọng"],
+        "year": 2024,
+        "edition": null,
+        "pages": 267,
+        "related_course_codes": ["2131472"],
+        "syllabus_use": null,
+        "url": "https://thuvienso.iuh.edu.vn/TraCuuTaiLieuSo2XemChiTiet.aspx?Id=122046"
+      },
+      {
+        "id": "121689",
+        "title": "Giáo trình kỹ năng sử dụng bàn phím và thiết bị văn phòng",
+        "authors": ["Lê Nhật Duy", "Hồ Đắc Quán", "Phạm Quảng Tri", "Giảng Thanh Trọn", "Kiều Đức Huynh"],
+        "year": 2024,
+        "edition": null,
+        "pages": 83,
+        "related_course_codes": ["2101727"],
+        "syllabus_use": null,
+        "url": "https://thuvienso.iuh.edu.vn/TraCuuTaiLieuSo2XemChiTiet.aspx?Id=121689"
+      }
+    ],
+    "full_text_access": "Trình xem toàn văn của các biểu ghi yêu cầu đăng nhập Thư viện số IUH."
+  },
+  "english_placement_2026": {
+    "admission_year": 2026,
+    "source_id": "iuh_english_placement_2026",
+    "purpose": "Thông tin kỳ thi sát hạch tiếng Anh đầu vào của tân sinh viên khóa 22.",
+    "certificate_note": "Phòng Đào tạo có thông báo hậu kiểm chứng chỉ ngoại ngữ đã nộp để xét miễn thi đầu vào."
+  },
+  "graduation": {
+    "general_regulation": {
+      "scope": "Quy định chung công bố tại Điều 23. Khi tư vấn cụ thể, kiểm tra văn bản và chương trình áp dụng cho đúng khóa.",
+      "source_id": "iuh_graduation_regulation",
+      "minimum_cumulative_gpa": 2.0,
+      "gpa_scale": 4.0,
+      "conditions": [
+        "Tích lũy các học phần, tín chỉ và nội dung bắt buộc của chương trình, đồng thời đạt chuẩn đầu ra.",
+        "Đáp ứng điều kiện về tình trạng kỷ luật và pháp lý tại thời điểm xét.",
+        "Đáp ứng chuẩn ngoại ngữ và công nghệ thông tin theo chương trình cùng các ngoại lệ tương ứng."
+      ],
+      "english_policy_summary": "Điều 23 nêu mốc bậc 3 hoặc tương đương trở lên cho chương trình chuẩn, tiên tiến, chất lượng cao và tăng cường tiếng Anh, và bậc 4 hoặc tương đương trở lên cho chương trình tiếng Anh toàn phần hoặc tài năng.",
+      "level_3_certificate_examples": {
+        "locator": "Bảng 4 của quy chế năm 2025, hàng Bậc 3/B1. Trích một số chứng chỉ.",
+        "vstep": 4.0,
+        "ielts": 4.0,
+        "toeic_four_skills": {"listening": 275, "reading": 275, "speaking": 120, "writing": 120}
+      }
+    },
+    "milestones_2023": {
+      "admission_year": 2023,
+      "source_id": "iuh_plan_2023",
+      "source_page": 7,
+      "required_course_codes": ["2101521", "2101700", "2199451"],
+      "summary": "Học kỳ 9 gồm Thực tập doanh nghiệp (5 tín chỉ), Khóa luận tốt nghiệp (8 tín chỉ) và mục Chứng chỉ Tiếng Anh (0 tín chỉ)."
+    },
+    "milestones_2026": {
+      "admission_year": 2026,
+      "planned_credits_variant": 163,
+      "status": "curriculum_milestones_transcribed",
+      "source_id": "iuh_plan_2026_163",
+      "semester": 9,
+      "course_codes": ["2199451", "2101521", "2101700"],
+      "summary": "Bảng kỳ 9 xếp Chứng chỉ Tiếng Anh (0 tín chỉ), Thực tập doanh nghiệp (5 tín chỉ) và Khoá luận tốt nghiệp (8 tín chỉ) vào nhóm bắt buộc.",
+      "specific_english_threshold": null,
+      "needed": ["Chuẩn đầu ra của chuyên ngành theo chương trình áp dụng cho K22", "Quy định chuyên ngành về thực tập, khóa luận hoặc học phần thay thế", "Văn bản xác nhận yêu cầu ngoại ngữ theo chương trình"]
+    },
+    "career_preparation_examples": {
+      "status": "illustrative",
+      "items": ["Dự án cá nhân có thể trình bày trong hồ sơ xin thực tập", "Chứng chỉ nghề nghiệp phù hợp với vị trí mục tiêu nếu có nhu cầu"]
+    }
+  },
+  "career_profiles": [
+    {
+      "id": "data_analyst",
+      "title": "Data Analyst",
+      "description": "Truy vấn dữ liệu, phân tích chỉ số và trình bày kết quả để hỗ trợ quyết định.",
+      "skills": ["Truy vấn dữ liệu", "Phân tích chỉ số", "Trực quan hóa và diễn giải kết quả"],
+      "tools_in_sample": ["SQL", "Power BI", "Looker"],
+      "illustrative_progression": ["Thực tập phân tích", "Data Analyst", "Senior Data Analyst", "Lead Analyst"],
+      "example_job_source_ids": ["itviec_etc_3448", "topcv_sonat_2248994"],
+      "salary_reference_group_ids": ["analytics_group_2025_2026"]
+    },
+    {
+      "id": "data_scientist",
+      "title": "Data Scientist",
+      "description": "Đặt giả thuyết, khảo sát dữ liệu, xây dựng và đánh giá mô hình cho bài toán dự báo hoặc phát hiện mẫu.",
+      "skills": ["Xác suất và thống kê", "Chuẩn bị dữ liệu", "Xây dựng và đánh giá mô hình"],
+      "tools_in_sample": ["Python", "pandas", "scikit-learn"],
+      "illustrative_progression": ["Data Science Intern", "Data Scientist", "Senior Data Scientist", "Lead Data Scientist"],
+      "example_job_source_ids": ["itviec_finpros_4018"],
+      "salary_reference_group_ids": ["analytics_group_2025_2026"]
+    },
+    {
+      "id": "ml_engineer",
+      "title": "Machine Learning Engineer",
+      "description": "Đưa mô hình vào hệ thống vận hành, xây dựng luồng dữ liệu phục vụ mô hình và theo dõi hiệu năng.",
+      "skills": ["Kỹ thuật phần mềm", "Triển khai mô hình", "Giám sát hệ thống ML"],
+      "tools_in_sample": ["Python", "PyTorch", "scikit-learn"],
+      "illustrative_progression": ["Vị trí ML hoặc kỹ thuật phần mềm đầu vào", "ML Engineer", "Senior ML Engineer", "ML Tech Lead"],
+      "example_job_source_ids": ["itviec_momo_3815", "itviec_mb_4409"],
+      "salary_reference_group_ids": ["ml_engineer_adecco_2026"]
+    },
+    {
+      "id": "data_engineer",
+      "title": "Data Engineer",
+      "description": "Xây dựng và vận hành quy trình đưa dữ liệu từ hệ thống nguồn tới nơi lưu trữ, xử lý và phân tích.",
+      "skills": ["ETL/ELT", "Mô hình hóa dữ liệu", "Vận hành luồng dữ liệu"],
+      "tools_in_sample": ["SQL", "Python", "PySpark", "Azure", "Microsoft Fabric"],
+      "illustrative_progression": ["Thực tập kỹ thuật dữ liệu", "Data Engineer", "Senior Data Engineer", "Lead Data Engineer"],
+      "example_job_source_ids": ["itviec_savills_1301", "itviec_abc_5514"],
+      "salary_reference_group_ids": ["data_engineer_2025_2026"]
+    }
+  ],
+  "market_snapshot": {
+    "job_postings_scope": "Tin mẫu từ doanh nghiệp đăng trên ITviec hoặc TopCV. Ngày đăng chính xác để trống khi chưa xác nhận được. Tin có thể được giữ làm mẫu để phân tích kỹ năng sau khi kết thúc tuyển dụng.",
+    "job_postings": [
+      {
+        "source_id": "itviec_etc_3448",
+        "role_id": "data_analyst",
+        "employer": "ETC Technology Systems",
+        "title": "Data Analyst",
+        "locations": ["Hà Nội"],
+        "level": null,
+        "minimum_years_of_experience": 1,
+        "published_on": null,
+        "skills": ["SQL", "Power BI", "Looker", "Mô hình hóa dữ liệu"]
+      },
+      {
+        "source_id": "itviec_finpros_4018",
+        "role_id": "data_scientist",
+        "employer": "FINPROS",
+        "title": "Data Science Intern",
+        "locations": ["Hà Nội", "TP.HCM"],
+        "level": "internship",
+        "minimum_years_of_experience": null,
+        "published_on": null,
+        "skills": ["Python", "SQL", "Thống kê", "Đánh giá mô hình", "PyTorch hoặc TensorFlow"]
+      },
+      {
+        "source_id": "itviec_momo_3815",
+        "role_id": "ml_engineer",
+        "employer": "M_Service (MoMo)",
+        "title": "Lead/Sr Machine Learning Engineer",
+        "locations": ["TP.HCM"],
+        "level": "senior_or_lead",
+        "minimum_years_of_experience": 3,
+        "published_on": null,
+        "skills": ["Python", "PyTorch", "Triển khai mô hình", "Giám sát hệ thống ML"]
+      },
+      {
+        "source_id": "itviec_savills_1301",
+        "role_id": "data_engineer",
+        "employer": "Savills Vietnam",
+        "title": "Fabric Data Engineer",
+        "locations": ["TP.HCM"],
+        "level": null,
+        "minimum_years_of_experience": 3,
+        "published_on": null,
+        "skills": ["SQL", "Python", "PySpark", "ETL/ELT", "Azure", "Microsoft Fabric"],
+        "experience_note": "Số năm lấy từ mục Yêu cầu công việc, trong khi nhãn danh sách hiển thị chấp nhận fresher."
+      },
+      {
+        "source_id": "topcv_sonat_2248994",
+        "role_id": "data_analyst",
+        "employer": "SonatGame Studio",
+        "title": "Data Analyst Intern (Game Industry)",
+        "locations": ["Hà Nội"],
+        "level": "internship",
+        "minimum_years_of_experience": null,
+        "published_on": null,
+        "observed_on": "2026-11-24",
+        "application_status": "historical",
+        "skills": ["SQL", "Python", "Excel", "Google Sheets"],
+        "preferred_skills": ["Power BI", "Tableau", "Looker"]
+      },
+      {
+        "source_id": "itviec_abc_5514",
+        "role_id": "data_engineer",
+        "employer": "Abc Studio Việt Nam",
+        "title": "Data Operations & Engineer Intern",
+        "locations": ["TP.HCM"],
+        "level": "internship",
+        "minimum_years_of_experience": 0,
+        "published_on": null,
+        "observed_on": "2026-11-24",
+        "skills": ["Python", "SQL", "ETL", "Kiểm tra chất lượng dữ liệu", "Cơ sở dữ liệu"]
+      },
+      {
+        "source_id": "itviec_mb_4409",
+        "role_id": "ml_engineer",
+        "employer": "MB Bank",
+        "title": "MB Trainee - AI Engineer (Fresher, Intern)",
+        "locations": ["Hà Nội"],
+        "level": "fresher_or_internship",
+        "minimum_years_of_experience": null,
+        "published_on": null,
+        "observed_on": "2026-11-24",
+        "skills": ["Python hoặc C/C++", "Thị giác máy tính", "Xử lý ngôn ngữ tự nhiên", "Kiểm thử và triển khai mô hình"],
+        "experience_note": "JD nêu đối tượng sinh viên năm tư hoặc tốt nghiệp chưa đầy một năm, có kỹ năng ở ít nhất một nhóm được liệt kê."
+      }
+    ],
+    "salary_groups": [
+      {
+        "id": "analytics_group_2025_2026",
+        "source_id": "itviec_salary_2025_2026",
+        "period": "2025–2026",
+        "region": "Việt Nam",
+        "group": "Data Analyst / Data Scientist / Business Intelligence Analyst",
+        "statistic": "median",
+        "currency": "VND",
+        "pay_period": "month",
+        "by_experience": [
+          {"experience": "all", "amount": 40650000},
+          {"experience": "<1 year", "amount": null},
+          {"experience": "1–2 years", "amount": 23800000},
+          {"experience": "5–8 years", "amount": 42500000}
+        ]
+      },
+      {
+        "id": "data_engineer_2025_2026",
+        "source_id": "itviec_salary_2025_2026",
+        "period": "2025–2026",
+        "region": "Việt Nam",
+        "group": "Data Engineer",
+        "statistic": "median",
+        "currency": "VND",
+        "pay_period": "month",
+        "by_experience": [
+          {"experience": "all", "amount": 41300000},
+          {"experience": "<1 year", "amount": null},
+          {"experience": "3–4 years", "amount": 56900000}
+        ]
+      },
+      {
+        "id": "ml_engineer_adecco_2026",
+        "source_id": "adecco_salary_2026",
+        "period": "2026",
+        "region": "Hà Nội và TP.HCM",
+        "group": "Machine Learning Engineer",
+        "statistic": "range",
+        "currency": "VND",
+        "pay_period": "month",
+        "pay_basis": "gross",
+        "ranges_by_location_and_experience": [
+          {"location": "TP.HCM", "experience": "1–5 years", "min_amount": 30000000, "max_amount": 70000000},
+          {"location": "TP.HCM", "experience": "5+ years", "min_amount": 70000000, "max_amount": 100000000},
+          {"location": "Hà Nội", "experience": "1–5 years", "min_amount": 30000000, "max_amount": 60000000},
+          {"location": "Hà Nội", "experience": "5+ years", "min_amount": 50000000, "max_amount": 100000000}
+        ],
+        "scope_note": "Các dải lương của Adecco theo khu vực và số năm kinh nghiệm. Bảng không có nhóm dưới một năm kinh nghiệm."
+      }
+    ],
+    "salary_notes": "Nhóm phân tích ITviec gồm ba chức danh. Khi trả lời, giữ nguyên nhóm, kỳ báo cáo, khu vực và loại thống kê. Giá trị null biểu thị nguồn không công bố số cho nhóm kinh nghiệm đó. Dải lương của Adecco và lương trung vị ITviec dùng hai loại thống kê riêng.",
+    "trend_reports": [
+      {
+        "source_id": "itviec_q3_2026",
+        "period": "Q3 2026",
+        "coverage": "Dữ liệu trên nền tảng ITviec, bản tóm tắt công khai",
+        "summary": "ITviec ghi nhận nhóm Data/AI/ML có tỷ trọng cao trong bối cảnh tuyển dụng IT trên nền tảng thu hẹp."
+      },
+      {
+        "source_id": "itviec_ai_2026",
+        "period": "2026",
+        "coverage": "Khảo sát của ITviec với 120 lãnh đạo công nghệ và quản lý nhân sự",
+        "summary": "Mẫu khảo sát cho thấy doanh nghiệp tuyển chọn lọc và đầu tư vào kỹ năng của đội ngũ. Cloud, AI/ML và kỹ thuật dữ liệu là các nhóm kỹ năng nổi bật được báo cáo đề cập."
+      }
+    ]
+  }
+}
