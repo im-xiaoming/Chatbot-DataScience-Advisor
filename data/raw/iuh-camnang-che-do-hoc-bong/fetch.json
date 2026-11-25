@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-che-do-hoc-bong",
+  "url": "https://camnang.iuh.edu.vn/che-do-hoc-bong-danh-cho-sinh-vien.php",
+  "final_url": "https://camnang.iuh.edu.vn/che-do-hoc-bong-danh-cho-sinh-vien.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:00:45+00:00",
+  "file": "source.html",
+  "bytes": 42189,
+  "sha256": "2054fab2a6b3f4395c3b852a5a982a034c9f6d1bfdb99723e59ffc944215a49a",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:00:45+00:00"
+}

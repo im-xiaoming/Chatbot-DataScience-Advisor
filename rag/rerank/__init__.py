@@ -1,5 +1,6 @@
-from .cross_encoder import CrossEncoder
+from .cross_encoder import CrossEncoder, format_query
 
 __all__ = [
-    'CrossEncoder'
+    'CrossEncoder',
+    'format_query'
 ]

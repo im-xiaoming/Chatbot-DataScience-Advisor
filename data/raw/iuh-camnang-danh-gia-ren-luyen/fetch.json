@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-danh-gia-ren-luyen",
+  "url": "https://camnang.iuh.edu.vn/danh-gia-ket-qua-ren-luyen.php",
+  "final_url": "https://camnang.iuh.edu.vn/danh-gia-ket-qua-ren-luyen.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:06+00:00",
+  "file": "source.html",
+  "bytes": 32301,
+  "sha256": "572e3f7384a792999cfaa914412bb401ea5402669f144a682f0d93526fd6f798",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:06+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-phuc-khao-diem",
+  "url": "https://camnang.iuh.edu.vn/quy-trinh-phuc-khao-diem.php",
+  "final_url": "https://camnang.iuh.edu.vn/quy-trinh-phuc-khao-diem.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:00:19+00:00",
+  "file": "source.html",
+  "bytes": 23669,
+  "sha256": "b36b1a9340cd5562b3aa9ded1d1984c8d6fe24efc63654901db9bcdd8932f0da",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:00:19+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-ky-nang-mem",
+  "url": "https://camnang.iuh.edu.vn/ren-luyen-ky-nang-mem.php",
+  "final_url": "https://camnang.iuh.edu.vn/ren-luyen-ky-nang-mem.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:09+00:00",
+  "file": "source.html",
+  "bytes": 25461,
+  "sha256": "3f5310ec4b3c9165bc877fa725be74969ccbc3df2985748990a928f368c0b2b1",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:09+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "ext-topdev-it-market-2024-2025",
+  "url": "https://topdev.vn/vietnam-tech-talents-report-topdev-2024",
+  "final_url": "https://topdev.vn/vietnam-tech-talents-report-topdev-2024",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:34+00:00",
+  "file": "source.html",
+  "bytes": 149937,
+  "sha256": "542b99135ebf762336c03fce1a0956c6dbd856042c2f67cb5309af0850cd0fee",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:34+00:00"
+}

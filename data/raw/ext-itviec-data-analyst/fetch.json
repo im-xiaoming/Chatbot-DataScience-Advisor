@@ -1,0 +1,13 @@
+{
+  "id": "ext-itviec-data-analyst",
+  "url": "https://itviec.com/blog/data-analyst-la-gi/",
+  "final_url": "https://itviec.com/blog/data-analyst-la-gi/",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:13:46+00:00",
+  "file": "source.html",
+  "bytes": 227204,
+  "sha256": "7a22ab9c408450c0894d88100fb97d2531c3f0d17a93de42a33523289c9b9963",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:13:46+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-dao-tao-quoc-te",
+  "url": "https://camnang.iuh.edu.vn/dao-tao-quoc-te.php",
+  "final_url": "https://camnang.iuh.edu.vn/dao-tao-quoc-te.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:14+00:00",
+  "file": "source.html",
+  "bytes": 46534,
+  "sha256": "dff093aa8598af31b2804cdc9062734720541ffa54df156728f36d18e7875a5d",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:14+00:00"
+}

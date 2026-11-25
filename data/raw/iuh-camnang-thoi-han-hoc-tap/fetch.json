@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-thoi-han-hoc-tap",
+  "url": "https://camnang.iuh.edu.vn/thoi-han-hoc-tap-k21.php",
+  "final_url": "https://camnang.iuh.edu.vn/thoi-han-hoc-tap-k21.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:00:31+00:00",
+  "file": "source.html",
+  "bytes": 37718,
+  "sha256": "2d341c4716762269d17ff8976b750d0a5097a7c40763feca4508f928990d1c20",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:00:31+00:00"
+}

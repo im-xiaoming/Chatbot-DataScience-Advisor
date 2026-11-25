@@ -30,7 +30,7 @@ EMBEDDING_DIMENSIONS = None
 class SparseEmbedding:
     def __init__(self, chunks: list[ChunkRecord], avg_search: bool = False):
         self.chunks = chunks
-        self.avgdl = None
+        self.avgdl = 256
         if avg_search:
             self.avgdl = helper.search_avgdl(chunks)
     
@@ -43,6 +43,10 @@ class SparseEmbedding:
                 sparse = helper._TF(chunk, avgdl=self.avgdl)
             sparses.append(sparse)
         return sparses
+    
+    @staticmethod
+    def sparse_query(query: str, avgdl: int = 256) -> models.SparseVector:
+        return helper._TF(d=query, avgdl=avgdl)
 
 class ModelEmbeddings:
     
@@ -85,14 +89,14 @@ class ModelEmbeddings:
         return r
         
             
-    @run_async
+
     async def aembedding_query(self, query: str) -> list[float]:
         logger.info("Embedding query.")
         async with self.semaphore:
             return await self._query(query, self.embedding_model.aembed_query)
 
 
-    @run_async
+
     async def aembedding_documents(
         self, documents: list[str], batch_size: int = 16
     ) -> list[list[float]]:

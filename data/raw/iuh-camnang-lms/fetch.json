@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-lms",
+  "url": "https://camnang.iuh.edu.vn/huong-dan-su-dung-lms.php",
+  "final_url": "https://camnang.iuh.edu.vn/huong-dan-su-dung-lms.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:12+00:00",
+  "file": "source.html",
+  "bytes": 30397,
+  "sha256": "f6be5136567ec22e2c787e60c0dd58fe927c15326764e3119437fb5b14a153f2",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:12+00:00"
+}

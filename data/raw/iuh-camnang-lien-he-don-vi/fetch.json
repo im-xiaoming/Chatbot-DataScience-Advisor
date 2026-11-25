@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-lien-he-don-vi",
+  "url": "https://camnang.iuh.edu.vn/lien-he-don-vi.php",
+  "final_url": "https://camnang.iuh.edu.vn/lien-he-don-vi.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:17+00:00",
+  "file": "source.html",
+  "bytes": 114585,
+  "sha256": "c583e753fd52a8f959aeda46eb378871b423414dde8c1bae890c2b0dc21c615d",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:17+00:00"
+}

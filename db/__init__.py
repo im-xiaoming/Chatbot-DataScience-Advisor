@@ -1,8 +1,8 @@
-from .qdrant import QuantModel, create_qdrant_client, DENSE, SPARSE
+from .qdrant import QdrantModel, create_qdrant_client, DENSE, SPARSE
 
 
 __all__ = [
-    'QuantModel',
+    'QdrantModel',
     'create_qdrant_client',
     'DENSE',
     'SPARSE'

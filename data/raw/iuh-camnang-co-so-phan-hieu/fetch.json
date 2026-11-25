@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-co-so-phan-hieu",
+  "url": "https://camnang.iuh.edu.vn/co-so-va-phan-hieu.php",
+  "final_url": "https://camnang.iuh.edu.vn/co-so-va-phan-hieu.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:02:15+00:00",
+  "file": "source.html",
+  "bytes": 35804,
+  "sha256": "caa1bcbeeb94b3b6683f0a7a7b93130918128c487b07197ca49b088e56cdc3b7",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:15+00:00"
+}

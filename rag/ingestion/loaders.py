@@ -142,7 +142,7 @@ class Splitter:
             return None
         
     
-    def _markdown_text_splitter(self, text: str):
+    def _markdown_text_splitter(self, text: str) -> list[Document]:
         return MARKDOWN_SPLITTER.split_text(text=text)
     
     
@@ -165,7 +165,7 @@ class Splitter:
         return new_docs
                
     
-    def split_document(self, path: str) -> list[Document]:
+    def split_document(self, path: str) -> tuple[list[Document], list[Document]]:
         text = self._load(path)
         return self._split_text(text)
 
@@ -173,6 +173,8 @@ class Splitter:
         if text:
             docs = self._markdown_text_splitter(text)
             docs = self._rebuild_docs(docs)
+            import copy
+            docs_ = copy.deepcopy(docs)
             
             # add chunk_id
             def _generate_id(doc_id, index: int) -> str:
@@ -182,15 +184,19 @@ class Splitter:
             for doc in docs:
                 documents.setdefault(doc.metadata['doc_id'], []).extend(self._recursive_character_splitter([doc]))
                 
-            full_docs = []
+            chunks = []
             for doc_id, _docs in documents.items():
                 for i, doc in enumerate(_docs):
                     doc.metadata['chunk_id'] = _generate_id(doc_id, i)
-                    full_docs.append(doc)
+                    chunks.append(doc)
+                    
+            merged = docs_[0]
+            merged.page_content = "\n\n".join(d.page_content for d in docs_)
+            merged.metadata["page_content"] = merged.page_content
             
-            return full_docs
+            return [merged], chunks
         
-        return []
+        return [], []
             
     
     def split_documents(
@@ -287,8 +293,8 @@ class RecordItem:
         return self.data
     
 
+
 class RecordList(list[RecordItem]):
-    
     def tolist(self) -> list[str]:
         """Only take the page_content."""
         records = [rec.tolist()[0] for rec in self]
@@ -299,8 +305,21 @@ class RecordList(list[RecordItem]):
         return records
 
         
-
 class Record:
+    
+    @staticmethod
+    def build_doc_records(docs: list[Document]) -> list[DocRecord]:
+        logging.info("Starting to build DocRecord.")
+        
+        try:
+            records = [DocRecord(**{**doc.metadata, 'page_content': doc.page_content}) for doc in docs]
+            return records
+        
+        except Exception as e:
+            logging.exception(f'Failed at build DocRecord: {e}')
+                
+        return RecordList([RecordItem()])
+    
     
     @staticmethod
     def build_chunk_records(docs: list[Document]) -> RecordList:
@@ -310,6 +329,6 @@ class Record:
             records = [ChunkRecord(**{**doc.metadata, 'page_content': doc.page_content}) for doc in docs]
             return RecordList([RecordItem(rec) for rec in records])
         except Exception as e:
-            logging.exception(f'Failed at build DocRecord: {e}')
+            logging.exception(f'Failed at build ChunkRecord: {e}')
         
         return RecordList([RecordItem()])

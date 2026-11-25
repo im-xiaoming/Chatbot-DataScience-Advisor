@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-buoc-thoi-hoc",
+  "url": "https://camnang.iuh.edu.vn/buoc-thoi-hoc.php",
+  "final_url": "https://camnang.iuh.edu.vn/buoc-thoi-hoc.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:00:11+00:00",
+  "file": "source.html",
+  "bytes": 26746,
+  "sha256": "e6451d75fcf7d63ed936a9e41a467a5f5dd0de361b1fa1b35c36cedd998486a6",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:00:11+00:00"
+}

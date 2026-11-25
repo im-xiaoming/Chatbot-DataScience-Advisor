@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-danh-muc-nganh",
+  "url": "https://camnang.iuh.edu.vn/chuong-trinh-dao-tao.php",
+  "final_url": "https://camnang.iuh.edu.vn/chuong-trinh-dao-tao.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T08:59:51+00:00",
+  "file": "source.html",
+  "bytes": 75232,
+  "sha256": "c024a52da6eec5f0352cbb0ffec5932d1817affd6b98fac5b815f1e00f803e6c",
+  "changed": true,
+  "first_seen_at": "2026-10-31T08:59:51+00:00"
+}

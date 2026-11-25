@@ -1,0 +1,13 @@
+{
+  "id": "iuh-camnang-dieu-kien-xet-tot-nghiep",
+  "url": "https://camnang.iuh.edu.vn/dieu-kien-xet-tot-nghiep.php",
+  "final_url": "https://camnang.iuh.edu.vn/dieu-kien-xet-tot-nghiep.php",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:00:07+00:00",
+  "file": "source.html",
+  "bytes": 28770,
+  "sha256": "64f0e19aa7a0437def4870a29e5bde5573964a795c795b7fe49fecf7d311c666",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:00:07+00:00"
+}

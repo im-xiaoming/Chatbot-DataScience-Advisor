@@ -1,0 +1,13 @@
+{
+  "id": "ext-wef-future-of-jobs-2025",
+  "url": "https://www3.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf",
+  "final_url": "https://www3.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf",
+  "http_status": 200,
+  "content_type": "application/pdf",
+  "fetched_at": "2026-10-31T09:02:37+00:00",
+  "file": "source.pdf",
+  "bytes": 18604420,
+  "sha256": "f25987c0dee6eba2d832f80924b0e926a4705605cbd6a5c5f10323897da31271",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:02:37+00:00"
+}

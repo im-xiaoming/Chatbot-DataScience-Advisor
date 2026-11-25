@@ -1,0 +1,13 @@
+{
+  "id": "ext-itviec-data-scientist",
+  "url": "https://itviec.com/blog/data-scientist-la-gi/",
+  "final_url": "https://itviec.com/blog/data-scientist-la-gi/",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-10-31T09:13:47+00:00",
+  "file": "source.html",
+  "bytes": 190735,
+  "sha256": "a34bafaf28be0f8d11576dd5543a5b4b2033c4df45f33b67760e0012d2329fa6",
+  "changed": true,
+  "first_seen_at": "2026-10-31T09:13:47+00:00"
+}
