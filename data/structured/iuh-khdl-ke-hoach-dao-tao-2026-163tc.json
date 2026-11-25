@@ -1,0 +1,1184 @@
+{
+  "doc_id": "iuh-khdl-ke-hoach-dao-tao-2026-163tc",
+  "institution": "Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH)",
+  "program": "Khoa học máy tính - Khoa học dữ liệu",
+  "cohort": "2026",
+  "academic_year": "2026–2027",
+  "education_type": "Đại học chính quy",
+  "planned_credits": 163,
+  "source": {
+    "publisher": "Cổng chương trình đào tạo IUH",
+    "portal_url": "https://ctdt.iuh.edu.vn/",
+    "detail_url": null,
+    "evidence": "Ảnh chụp tab Chương trình khung và kế hoạch đào tạo do người dùng cung cấp, chế độ Theo học kỳ."
+  },
+  "field_definitions": {
+    "prior_course": "Học trước (a)",
+    "prerequisite": "Tiên quyết (b)",
+    "corequisite": "Song hành (c)",
+    "theory_as_listed": "Giá trị cột LT",
+    "practice_as_listed": "Giá trị cột TH"
+  },
+  "scope_notes": [
+    "Bảng học phần thuộc bản 163 tín chỉ. Áp dụng cho bản chương trình đúng tên, khóa và tổng tín chỉ.",
+    "Dấu (**) được giữ như ảnh. Phần Lưu ý bị cắt khỏi ảnh nên chưa xác nhận ý nghĩa.",
+    "Bảng chỉ chứa các điều kiện học phần hiển thị trong cột điều kiện."
+  ],
+  "semesters": [
+    {
+      "semester": 1,
+      "planned_credits": 22,
+      "required_credits": 22,
+      "elective_credits": 0,
+      "elective_groups": [],
+      "courses": [
+        {
+          "course_code": "2120405",
+          "name": "Giáo dục thể chất 1",
+          "credits": 2,
+          "theory_as_listed": 0,
+          "practice_as_listed": 4,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": "(**)"
+        },
+        {
+          "course_code": "2120504",
+          "name": "Giáo dục Quốc phòng và An Ninh",
+          "credits": 8,
+          "theory_as_listed": 5,
+          "practice_as_listed": 6,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": "(**)"
+        },
+        {
+          "course_code": "2112012",
+          "name": "Triết học Mác - Lênin",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2113431",
+          "name": "Toán cao cấp 1",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101402",
+          "name": "Cấu trúc rời rạc",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101539",
+          "name": "Nhập môn Tin học",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101622",
+          "name": "Nhập môn Lập trình",
+          "credits": 2,
+          "theory_as_listed": 0,
+          "practice_as_listed": 4,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 2,
+      "planned_credits": 21,
+      "required_credits": 21,
+      "elective_credits": 0,
+      "elective_groups": [],
+      "courses": [
+        {
+          "course_code": "2111108",
+          "name": "Tiếng Anh 1",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": "(**)"
+        },
+        {
+          "course_code": "2120406",
+          "name": "Giáo dục thể chất 2",
+          "credits": 2,
+          "theory_as_listed": 0,
+          "practice_as_listed": 4,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": "(**)"
+        },
+        {
+          "course_code": "2112013",
+          "name": "Kinh tế chính trị Mác - Lênin",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2113432",
+          "name": "Toán cao cấp 2",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2113434",
+          "name": "Toán ứng dụng",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2132001",
+          "name": "Kỹ năng làm việc nhóm",
+          "credits": 2,
+          "theory_as_listed": 1,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101405",
+          "name": "Kỹ thuật lập trình",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101622",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101567",
+          "name": "Hệ thống máy tính",
+          "credits": 4,
+          "theory_as_listed": 3,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 3,
+      "planned_credits": 19,
+      "required_credits": 16,
+      "elective_credits": 3,
+      "elective_groups": [
+        {
+          "id": "hk3-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2111188",
+          "name": "Tiếng Anh 2",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2111108",
+              "type": "prerequisite"
+            }
+          ],
+          "source_title_marker": "(**)"
+        },
+        {
+          "course_code": "2101436",
+          "name": "Hệ cơ sở dữ liệu",
+          "credits": 4,
+          "theory_as_listed": 3,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101525",
+          "name": "Những vấn đề xã hội và nghề nghiệp",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101623",
+          "name": "Lập trình hướng đối tượng",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101622",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101797",
+          "name": "Cấu trúc dữ liệu và giải thuật",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101622",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101777",
+          "name": "Công nghệ thông tin trong chuyển đổi số",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2104486",
+          "name": "Ứng dụng hóa học trong công nghiệp",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2104487",
+          "name": "Ứng dụng 5S và Kaizen trong sản xuất",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2107359",
+          "name": "Ý tưởng khởi nghiệp",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2107402",
+          "name": "Địa lý kinh tế",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2113437",
+          "name": "Vật lý đại cương",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2123996",
+          "name": "Môi trường và Con người",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2132002",
+          "name": "Kỹ năng xây dựng kế hoạch",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 4,
+      "planned_credits": 18,
+      "required_credits": 15,
+      "elective_credits": 3,
+      "elective_groups": [
+        {
+          "id": "hk4-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2113433",
+          "name": "Phương pháp luận nghiên cứu khoa học",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2131678",
+          "name": "Pháp luật đại cương",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101435",
+          "name": "Mạng máy tính",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101680",
+          "name": "Nhập môn Khoa học Dữ liệu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101760",
+          "name": "Xác suất cho Khoa học Dữ liệu",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101861",
+          "name": "Nhập môn Kĩ thuật Dữ liệu",
+          "credits": 2,
+          "theory_as_listed": 1,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101677",
+          "name": "Giải thuật và tối ưu hóa phân tán",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk4-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101678",
+          "name": "Trực quan hóa dữ liệu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk4-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101679",
+          "name": "Đại số tuyến tính tính toán",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk4-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 5,
+      "planned_credits": 17,
+      "required_credits": 12,
+      "elective_credits": 5,
+      "elective_groups": [
+        {
+          "id": "hk5-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 2
+        },
+        {
+          "id": "hk5-nhom2",
+          "label": "Nhóm 2",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101419",
+          "name": "Trí tuệ nhân tạo",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101402",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101624",
+          "name": "Thống kê máy tính và ứng dụng",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101405",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101681",
+          "name": "Lập trình phân tích dữ liệu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101685",
+          "name": "Tối ưu hóa cho Khoa học dữ liệu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101566",
+          "name": "Kiến trúc lưu trữ phân tán",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk5-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101682",
+          "name": "Quá trình ngẫu nhiên",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk5-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101683",
+          "name": "Các ngôn ngữ truy vấn cơ sở dữ liệu",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk5-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101686",
+          "name": "Phân tích chuỗi thời gian",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk5-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101687",
+          "name": "Kỹ thuật tài chính",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk5-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101698",
+          "name": "Xử lý ảnh",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk5-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 6,
+      "planned_credits": 20,
+      "required_credits": 14,
+      "elective_credits": 6,
+      "elective_groups": [
+        {
+          "id": "hk6-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        },
+        {
+          "id": "hk6-nhom2",
+          "label": "Nhóm 2",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2112014",
+          "name": "Chủ nghĩa xã hội khoa học",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2112012",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101627",
+          "name": "Khai thác dữ liệu và ứng dụng",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101436",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101657",
+          "name": "Phát triển ứng dụng",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101863",
+          "name": "Kiến trúc hướng dịch vụ và Điện toán đám mây",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101631",
+          "name": "Máy học",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101419",
+              "type": "prior_course"
+            },
+            {
+              "course_code": "2101436",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101428",
+          "name": "Tương tác người máy",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101544",
+          "name": "Tiếp thị điện tử",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101688",
+          "name": "Nhập môn Robot",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101689",
+          "name": "Giao dịch định lượng",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101420",
+          "name": "Công nghệ phần mềm",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk6-nhom2",
+          "dependencies": [
+            {
+              "course_code": "2101623",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101690",
+          "name": "Tính toán song song",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk6-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101691",
+          "name": "Khai phá đồ thị",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk6-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 7,
+      "planned_credits": 16,
+      "required_credits": 10,
+      "elective_credits": 6,
+      "elective_groups": [
+        {
+          "id": "hk7-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        },
+        {
+          "id": "hk7-nhom2",
+          "label": "Nhóm 2",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2112005",
+          "name": "Tư tưởng Hồ Chí Minh",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2112012",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2112015",
+          "name": "Lịch sử Đảng Cộng sản Việt Nam",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2112012",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101582",
+          "name": "Nhập môn dữ liệu lớn",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101436",
+              "type": "prerequisite"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101650",
+          "name": "Học sâu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101727",
+          "name": "Kỹ năng sử dụng bàn phím và thiết bị văn phòng",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2106529",
+          "name": "Hội họa",
+          "credits": 3,
+          "theory_as_listed": 1,
+          "practice_as_listed": 4,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2110585",
+          "name": "Tâm lý học đại cương",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2111491",
+          "name": "Cơ sở văn hóa Việt Nam",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2111492",
+          "name": "Tiếng Việt thực hành",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2112011",
+          "name": "Âm nhạc – Nhạc lý và Guitar căn bản",
+          "credits": 3,
+          "theory_as_listed": 1,
+          "practice_as_listed": 4,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2113439",
+          "name": "Xã hội học",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101411",
+          "name": "Nhập môn an toàn thông tin",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101692",
+          "name": "Hệ khuyến nghị",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101693",
+          "name": "Lý thuyết trò chơi",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 8,
+      "planned_credits": 17,
+      "required_credits": 14,
+      "elective_credits": 3,
+      "elective_groups": [
+        {
+          "id": "hk8-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101444",
+          "name": "Xử lý ngôn ngữ tự nhiên",
+          "credits": 3,
+          "theory_as_listed": 3,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101694",
+          "name": "Thị giác máy tính",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101724",
+          "name": "Các nền tảng dữ liệu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101771",
+          "name": "Công nghệ mới trong phát triển ứng dụng CNTT Khoa học dữ liệu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101772",
+          "name": "Chuyên đề Khoa học dữ liệu và ứng dụng",
+          "credits": 2,
+          "theory_as_listed": 2,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101634",
+          "name": "Đảm bảo chất lượng và Kiểm thử phần mềm",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [
+            {
+              "course_code": "2101420",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101696",
+          "name": "Phân tích kinh doanh",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101697",
+          "name": "Giải tích ngẫu nhiên cho tài chính",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101770",
+          "name": "Phân tích dữ liệu chuyên sâu",
+          "credits": 3,
+          "theory_as_listed": 2,
+          "practice_as_listed": 2,
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [
+            {
+              "course_code": "2101436",
+              "type": "prior_course"
+            }
+          ],
+          "source_title_marker": null
+        }
+      ]
+    },
+    {
+      "semester": 9,
+      "planned_credits": 13,
+      "required_credits": 13,
+      "elective_credits": 0,
+      "elective_groups": [],
+      "courses": [
+        {
+          "course_code": "2199451",
+          "name": "Chứng chỉ Tiếng Anh",
+          "credits": 0,
+          "theory_as_listed": 0,
+          "practice_as_listed": 0,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": "(**)"
+        },
+        {
+          "course_code": "2101521",
+          "name": "Thực tập doanh nghiệp",
+          "credits": 5,
+          "theory_as_listed": 0,
+          "practice_as_listed": 10,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        },
+        {
+          "course_code": "2101700",
+          "name": "Khoá luận tốt nghiệp",
+          "credits": 8,
+          "theory_as_listed": 0,
+          "practice_as_listed": 16,
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "source_title_marker": null
+        }
+      ]
+    }
+  ]
+}

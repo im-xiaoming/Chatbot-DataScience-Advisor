@@ -27,16 +27,21 @@ DOCUMENTS_GLOB_PATH = r'./data/normalized/'
 async def main():
     parser = argparse.ArgumentParser()
     
-    parser.add_argument("--collection_name", type=str ,default='QQ')
+    parser.add_argument("--collection_name", type=str ,default='ying')
+    parser.add_argument("--review-only", action="store_true")
     args = parser.parse_args()
     
     
-    # ============================== splitter and load documents ==============================
-    # splitter = Splitter(recursive_config=RecursiveCharacterTextSplitterConfig())
-    
-    # documents, chunks = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)
-    # doc_records = Record.build_doc_records(docs=documents)
-    # chunk_records = Record.build_chunk_records(docs=chunks)
+    if args.review_only:
+        splitter.split_documents(DOCUMENTS_GLOB_PATH, review_only=True)
+        raise SystemExit(0)
+
+    from rag.ingestion.indexer import QdrantIndexer
+    from rag.embeddings import ModelEmbeddings, SparseEmbedding
+    from db import create_qdrant_client
+
+    documents = splitter.split_documents(glob_path=DOCUMENTS_GLOB_PATH)[:10]
+    chunk_records = Record.build_chunk_records(docs=documents)
     
     # await save_to_db(docs=doc_records, chunks=chunk_records.model_dump())
     
