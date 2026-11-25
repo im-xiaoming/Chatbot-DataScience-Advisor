@@ -27,33 +27,11 @@ $env:RETRIEVER="fake"; $env:LLM="fake"; uv run uvicorn api.main:app
 Mở `http://localhost:8000`, đăng ký một tài khoản rồi hỏi thử. Muốn bỏ bước đăng nhập thì thêm `AUTH_REQUIRED=0`
 (PowerShell: `$env:AUTH_REQUIRED="0";`).
 
-## 2. Chạy thật
+## 2. Chạy với Qdrant và Ollama
 
-Cần:
+Xem [hướng dẫn chạy trên Windows](../README.md#chạy-cục-bộ-trên-windows) để khởi động Docker, kiểm tra collection `QQ` và chạy giao diện bằng PowerShell. API dùng `qwen3-embedding:4b` cho truy xuất và `qwen3.5:4b` cho câu trả lời. Khi chỉ chạy API trên collection có sẵn, dịch vụ cần Qdrant và Ollama.
 
-1. **Ollama** đang chạy và đã tải 2 model:
-   `ollama pull qwen3.5:4b` và `ollama pull qwen3-embedding:4b`.
-2. **Qdrant**. `docker-compose.yaml` hiện chỉ có Postgres, chưa có Qdrant, nên chạy riêng:
-   `docker run -d -p 6333:6333 qdrant/qdrant:v1.15.1`
-3. **Postgres + file `.env`** (chỉ cần cho bước nạp dữ liệu): `docker compose up -d`, và `.env` có
-   `DATABASE_URL`, `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` (đọc bởi `config/config.py`).
-4. **Nạp dữ liệu** vào collection `QQ` (tên mà `api/rag_service.py` tìm):
-   `uv run python pipline.py --collection_name QQ`
-
-Kiểm tra máy rồi bật API:
-
-```bash
-uv run python -m api.doctor
-RETRIEVER=qdrant LLM=ollama uv run uvicorn api.main:app
-```
-
-```powershell
-uv run python -m api.doctor
-$env:RETRIEVER="qdrant"; $env:LLM="ollama"; uv run uvicorn api.main:app
-```
-
-`api.doctor` kiểm tra Python, thư viện, dữ liệu, Ollama và 2 model (thử sinh một câu), Qdrant (collection `QQ`),
-Postgres; in dấu ✗ kèm gợi ý sửa và lệnh chạy hợp với máy.
+Có thể chạy `uv run --locked python -m api.doctor` để kiểm tra Python, thư viện, mô hình Ollama, collection `QQ` và kết nối PostgreSQL. Xem lưu ý về pipeline trong hướng dẫn trên nếu cần lập chỉ mục từ đầu.
 
 ## 3. Biến môi trường
 

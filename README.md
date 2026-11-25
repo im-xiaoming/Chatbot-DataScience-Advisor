@@ -2,7 +2,7 @@
 
 Hệ thống lập chỉ mục và truy xuất tài liệu tiếng Việt phục vụ tư vấn ngành Khoa học dữ liệu và tra cứu thông tin học vụ tại Trường Đại học Công nghiệp TP. Hồ Chí Minh (IUH). Kho dữ liệu bao gồm tuyển sinh, chương trình đào tạo, nghề nghiệp, xu hướng thị trường, quy chế, học bổng, học phí và hỗ trợ sinh viên.
 
-Repo hiện cung cấp pipeline lập chỉ mục và thư viện truy xuất Python. Phần sinh câu trả lời đã được thử nghiệm trong terminal với Ollama. API và giao diện chat chưa được tích hợp vào luồng chạy chính.
+Bản hiện tại có API FastAPI và giao diện chat web. API truy xuất tài liệu từ Qdrant, gửi các đoạn liên quan cho Ollama và trả dần câu trả lời kèm nguồn. SQLite lưu tài khoản và lịch sử hội thoại khi người dùng đăng nhập.
 
 ## Kiến trúc
 
@@ -29,53 +29,69 @@ flowchart LR
 - Docker và Docker Compose để chạy PostgreSQL 17. Các lệnh dưới đây cũng dùng Docker cho Qdrant và Ollama.
 - Cấu hình phụ thuộc hiện tại lấy PyTorch và TorchVision từ kho wheel CUDA khai báo trong [pyproject.toml](pyproject.toml). Máy không có wheel tương thích với cấu hình này cần điều chỉnh cấu hình phụ thuộc theo môi trường.
 
-## Chạy cục bộ
+## Chạy cục bộ trên Windows
 
-Chạy các lệnh từ thư mục gốc của repo. Ví dụ dành cho PowerShell.
+Hướng dẫn này dùng PowerShell tại thư mục gốc của repo và collection `QQ` đã được lập chỉ mục. Mở Docker Desktop và đợi Docker Engine sẵn sàng trước khi chạy lệnh.
 
-### 1. Cài phụ thuộc và khởi động dịch vụ
+### 1. Đồng bộ thư viện và khởi động dịch vụ
 
 ```powershell
 uv sync --locked
 docker compose up -d --wait
+docker start ds-advisor-qdrant ds-advisor-ollama
+```
+
+Docker Compose khởi động PostgreSQL. API hỏi đáp đọc dữ liệu đã lập chỉ mục từ Qdrant. PostgreSQL phục vụ bước nạp dữ liệu và có thể bỏ qua khi chỉ chạy chat với collection có sẵn.
+
+Nếu Docker báo thiếu container Qdrant hoặc Ollama, chạy lệnh tạo tương ứng. Nếu volume cũ vẫn còn, các lệnh dùng lại dữ liệu trong volume đó.
+
+```powershell
 docker run -d --name ds-advisor-qdrant -p 127.0.0.1:6333:6333 -v ds-advisor-qdrant:/qdrant/storage qdrant/qdrant:latest
 docker run -d --name ds-advisor-ollama -p 127.0.0.1:11434:11434 -v ds-advisor-ollama:/root/.ollama ollama/ollama
+```
+
+Kiểm tra mô hình bằng `docker exec ds-advisor-ollama ollama list`. Chạy lệnh tương ứng nếu thiếu mô hình.
+
+```powershell
 docker exec ds-advisor-ollama ollama pull qwen3-embedding:4b
+docker exec ds-advisor-ollama ollama pull qwen3.5:4b
 ```
 
-Docker Compose trong repo khởi động PostgreSQL. Hai lệnh `docker run` tạo Qdrant và Ollama cho lần thiết lập đầu tiên. Với container đã tạo, dùng `docker start ds-advisor-qdrant ds-advisor-ollama` khi cần khởi động lại. Có thể thêm `--gpus all` vào lệnh tạo container Ollama nếu Docker đã được cấu hình GPU tương thích.
-
-### 2. Cấu hình môi trường
-
-Tạo `.env` từ [.env.example](.env.example) ở thư mục gốc. Các giá trị dưới đây tương ứng với [Docker Compose](docker-compose.yaml) cho môi trường phát triển cục bộ.
-
-```dotenv
-DATABASE_URL=postgresql+asyncpg://myuser:mypassword@127.0.0.1:5432/mydatabase
-POSTGRES_DB=mydatabase
-POSTGRES_USER=myuser
-POSTGRES_PASSWORD=mypassword
-HOST=http://127.0.0.1:6333
-```
-
-`HOST` là endpoint Qdrant trong cấu hình dự án. Ollama chạy ở cổng mặc định `11434` trong ví dụ này. Giữ thông tin xác thực của từng môi trường trong cấu hình cục bộ và dùng giá trị phù hợp khi triển khai ngoài máy phát triển.
-
-### 3. Chạy migration và lập chỉ mục
+### 2. Kiểm tra dữ liệu trong Qdrant
 
 ```powershell
-uv run --locked alembic upgrade head
-uv run --locked python pipline.py --collection_name QQ
+(Invoke-RestMethod -Method Post `
+    -Uri 'http://127.0.0.1:6333/collections/QQ/points/count' `
+    -ContentType 'application/json' `
+    -Body '{"exact":true}').result.count
 ```
 
-Pipeline đọc Markdown trong `data/normalized/`, chia đoạn, ghi PostgreSQL, tạo cả hai loại vector và upsert vào Qdrant. Lần đầu có thể mất vài phút do tải mô hình vào bộ nhớ và tạo embedding cho toàn bộ kho.
+Collection đã kiểm chứng trước đây có **740 điểm**. Nếu đang dùng collection đó và lệnh trả về `740`, tiếp tục bước 3. Khi dùng một bộ dữ liệu khác, đối chiếu số điểm với lần lập chỉ mục tương ứng.
 
-### 4. Kiểm tra dữ liệu sau khi chạy
+Nếu lệnh báo `404` hoặc trả về `0`, cần khôi phục collection `QQ` từ volume hoặc bản sao dữ liệu có sẵn. Trên bản `main` hiện tại, [`pipline.py`](pipline.py) gọi `splitter` trước khi khởi tạo và các bước ghi PostgreSQL, tạo vector tài liệu và upsert Qdrant đang bị comment. Với môi trường cài mới chưa có dữ liệu, cần sửa pipeline trước khi dùng nó để tạo `QQ`.
+
+### 3. Chạy FastAPI và mở giao diện
 
 ```powershell
-docker exec postgres_db psql -U myuser -d mydatabase -c 'SELECT (SELECT count(*) FROM docs) AS documents, (SELECT count(*) FROM chunks) AS chunks;'
-(Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:6333/collections/QQ/points/count' -ContentType 'application/json' -Body '{"exact":true}').result
+$env:RETRIEVER = 'qdrant'
+$env:LLM = 'ollama'
+$env:HOST = 'http://127.0.0.1:6333'
+$env:OLLAMA_HOST = 'http://127.0.0.1:11434'
+$env:AUTH_REQUIRED = '0'
+$env:RERANK = '0'
+
+uv run --locked uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
 
-Lần kiểm chứng trên dữ liệu của nhánh `ngythanh` cho kết quả **49 tài liệu, 740 đoạn và 740 điểm Qdrant**. Khi thay đổi dữ liệu, số lượng dự kiến sẽ thay đổi. Kiểm tra kết quả ghi và đối chiếu `chunk_id` giữa hai kho khi cần xác nhận chúng có cùng tập đoạn. Pipeline hiện chưa có quy trình tự động loại bỏ toàn bộ điểm cũ khi thay đổi cách chia đoạn hoặc xóa tài liệu khỏi nguồn.
+Khi Uvicorn báo đã chạy, giữ terminal mở và truy cập [giao diện chat](http://127.0.0.1:8000). Dùng [`/health`](http://127.0.0.1:8000/health) để xác nhận API đã bật `retriever=qdrant` và `llm=ollama`.
+
+Câu hỏi thử:
+
+> Theo quy chế đào tạo tín chỉ ban hành năm 2025, sinh viên bị buộc thôi học trong những trường hợp nào?
+
+`AUTH_REQUIRED=0` cho phép chat khi chưa đăng nhập. Đặt `AUTH_REQUIRED=1` trước khi khởi động API nếu muốn yêu cầu đăng nhập và lưu lịch sử theo tài khoản. Sau khi khởi động lại máy, mở Docker Desktop, khởi động các container rồi chạy lại bước 3. Chạy lại `uv sync --locked` khi pull về thay đổi phụ thuộc.
+
+Xem thêm biến môi trường và cách chạy đánh giá trong [tài liệu API](api/README.md).
 
 ## Ví dụ truy xuất có bộ lọc
 
