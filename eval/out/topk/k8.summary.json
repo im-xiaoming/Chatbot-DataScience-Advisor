@@ -1,0 +1,52 @@
+{
+  "config": {
+    "retriever": "qdrant",
+    "llm": "ollama",
+    "qa": "eval/qa.jsonl",
+    "k": 8,
+    "limit": 10,
+    "only": "",
+    "judge": false
+  },
+  "errors": [],
+  "summary": {
+    "overall": {
+      "n": 10,
+      "key_fact_recall": 0.892,
+      "facts_in_context": 0.942,
+      "fail_retrieval": 2,
+      "fail_generation": 0,
+      "source_hit": 1,
+      "cited_rate": 0.8,
+      "invalid_citations": 0,
+      "condense_ok": null,
+      "invented_codes": 0,
+      "semester_mismatch": 0,
+      "name_mismatch": 0,
+      "answered_in_scope": 0.7,
+      "refused_out_of_scope": null,
+      "first_token_ms_avg": 19262,
+      "total_ms_avg": 50870
+    },
+    "by_function": {
+      "Chọn môn theo học kỳ": {
+        "n": 10,
+        "key_fact_recall": 0.892,
+        "facts_in_context": 0.942,
+        "fail_retrieval": 2,
+        "fail_generation": 0,
+        "source_hit": 1,
+        "cited_rate": 0.8,
+        "invalid_citations": 0,
+        "condense_ok": null,
+        "invented_codes": 0,
+        "semester_mismatch": 0,
+        "name_mismatch": 0,
+        "answered_in_scope": 0.7,
+        "refused_out_of_scope": null,
+        "first_token_ms_avg": 19262,
+        "total_ms_avg": 50870
+      }
+    }
+  }
+}
