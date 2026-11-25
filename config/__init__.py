@@ -1,10 +1,11 @@
 from .config import RecursiveCharacterTextSplitterConfig, EmbeddingsConfig, QdrantConfig, LLMConfig, \
-    QdrantDatabaseConfig
+    QdrantDatabaseConfig, CrossEncoderConfig
 
 __all__ = [
     'RecursiveCharacterTextSplitterConfig',
     'EmbeddingsConfig',
     'QdrantConfig',
     'LLMConfig',
-    'QdrantDatabaseConfig'
+    'QdrantDatabaseConfig',
+    'CrossEncoderConfig'
 ]
