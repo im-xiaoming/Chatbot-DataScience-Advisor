@@ -84,7 +84,7 @@ class QdrantSearch(QdrantModel):
         dense_filter: models.Filter | None = None,
         sparse_filter: models.Filter | None = None,
         format: bool | None = False
-    ):
+    ) -> models.QueryResponse:
         if not self.client:
             self.create_qdrant_client()
         
