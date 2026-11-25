@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cố vấn lộ trình KHDL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/purify.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stripe"></div>
+<header class="topbar">
+  <button class="icon-btn only-mobile" id="menuBtn" aria-label="Mở menu">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <div class="brand">
+    <div class="emblem" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><path d="M6 24V14M12 24V9M18 24v-7M24 24V6" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="6" r="2.5"/></svg>
+    </div>
+    <div>
+      <div class="brand-title">Cố vấn lộ trình KHDL</div>
+      <div class="brand-sub">Ngành Khoa học Dữ liệu · dành cho sinh viên năm nhất</div>
+    </div>
+  </div>
+  <div class="top-actions">
+    <span class="mode" id="mode" title="Nguồn đang dùng">Đang kết nối…</span>
+    <button class="btn-ghost" id="newChat">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>Cuộc trò chuyện mới</span>
+    </button>
+    <div class="user-menu" id="userMenu" hidden>
+      <button class="user-chip" id="userChip" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="avatar-sm" id="userInitial">S</span><span class="user-name" id="userName"></span>
+      </button>
+      <div class="user-pop" id="userPop" hidden>
+        <div class="user-pop-head"><b id="popName"></b><small id="popUser"></small></div>
+        <button type="button" id="logoutBtn">
+          <svg viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"/></svg><span>Đăng xuất</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <section>
+      <h3>Mục tiêu nghề nghiệp</h3>
+      <div class="goals" id="goals"></div>
+    </section>
+    <section>
+      <h3>Phạm vi tìm kiếm</h3>
+      <select id="category">
+        <option value="">Tất cả tài liệu</option>
+        <option value="career_role">Vị trí công việc</option>
+        <option value="market_trend">Thị trường tuyển dụng</option>
+        <option value="curriculum">Chương trình đào tạo</option>
+        <option value="regulation">Quy chế, quy định</option>
+        <option value="scholarship_tuition">Học phí, học bổng</option>
+        <option value="academic_notice">Thông báo học vụ</option>
+        <option value="student_support">Hỗ trợ sinh viên</option>
+        <option value="admission">Tuyển sinh</option>
+      </select>
+    </section>
+    <section class="grow">
+      <h3>Gần đây</h3>
+      <ul class="recent" id="recent"></ul>
+    </section>
+    <p class="disclaimer">Câu trả lời dựa trên niên giám và tài liệu đã thu thập. Hãy đối chiếu với phòng Đào tạo trước khi đăng ký học phần.</p>
+  </aside>
+  <div class="scrim only-mobile" id="scrim"></div>
+
+  <main class="main">
+    <div class="scroll" id="scroll">
+      <div class="thread" id="thread">
+        <section class="welcome" id="welcome">
+          <div class="hero">
+            <div class="hero-kicker" id="heroKicker">Xin chào tân sinh viên!</div>
+            <h1>Hiểu rõ nghề dữ liệu và lên lộ trình học phù hợp với bạn</h1>
+            <p>Chọn mục tiêu nghề nghiệp ở cột trái, rồi bắt đầu từ một chủ đề dưới đây hoặc tự đặt câu hỏi.</p>
+          </div>
+          <div class="features" id="features"></div>
+        </section>
+      </div>
+    </div>
+
+    <form class="composer" id="composer">
+      <div class="goal-pill" id="goalPill"></div>
+      <div class="input-row">
+        <textarea id="input" rows="1" placeholder="Hỏi về nghề nghiệp, môn học, học phí, quy chế…" autocomplete="off"></textarea>
+        <button type="submit" class="send" id="sendBtn" aria-label="Gửi">
+          <svg class="i-send" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          <svg class="i-stop" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>
+        </button>
+      </div>
+      <div class="hint">Enter để gửi · Shift + Enter để xuống dòng</div>
+    </form>
+  </main>
+</div>
+<div class="auth" id="auth" hidden>
+  <div class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-side">
+      <div class="emblem big" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M6 24V14M12 24V9M18 24v-7M24 24V6" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="6" r="2.5"/></svg>
+      </div>
+      <h2>Cố vấn lộ trình KHDL</h2>
+      <p>Trợ lý tư vấn nghề nghiệp và chọn môn cho sinh viên năm nhất ngành Khoa học Dữ liệu.</p>
+      <ul>
+        <li>Lưu lại các cuộc trò chuyện của bạn</li>
+        <li>Trả lời có dẫn nguồn từ niên giám, quy chế</li>
+        <li>Kiểm tra mã môn, học kỳ theo chương trình 2023</li>
+      </ul>
+    </div>
+    <div class="auth-main">
+      <div class="auth-tabs" role="tablist">
+        <button type="button" role="tab" data-tab="login" aria-selected="true">Đăng nhập</button>
+        <button type="button" role="tab" data-tab="register" aria-selected="false">Đăng ký</button>
+      </div>
+      <h1 id="authTitle" class="sr-only">Đăng nhập</h1>
+      <form id="authForm" novalidate>
+        <label class="field only-register">Họ tên hiển thị
+          <input name="display_name" autocomplete="name" maxlength="60" placeholder="Ví dụ: Nguyễn Văn A">
+        </label>
+        <label class="field">Tên đăng nhập
+          <input name="username" autocomplete="username" required minlength="3" maxlength="32" pattern="[A-Za-z0-9_.]{3,32}" placeholder="vd: sv22123456">
+          <small class="only-register">3–32 ký tự: chữ không dấu, số, dấu _ hoặc .</small>
+        </label>
+        <label class="field">Mật khẩu
+          <span class="pw">
+            <input name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128">
+            <button type="button" class="pw-toggle" id="pwToggle" aria-label="Hiện mật khẩu" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </span>
+          <small class="only-register">Tối thiểu 8 ký tự, không dùng toàn số.</small>
+        </label>
+        <label class="field only-register">Nhập lại mật khẩu
+          <input name="password2" type="password" autocomplete="new-password" maxlength="128">
+        </label>
+        <div class="auth-error" id="authError" role="alert" hidden></div>
+        <button type="submit" class="auth-submit" id="authSubmit">Đăng nhập</button>
+      </form>
+      <p class="auth-switch" id="authSwitch">Chưa có tài khoản? <button type="button" data-tab="register">Đăng ký ngay</button></p>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
