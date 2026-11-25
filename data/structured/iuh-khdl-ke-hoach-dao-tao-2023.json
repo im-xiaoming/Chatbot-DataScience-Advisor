@@ -1,0 +1,1366 @@
+{
+  "doc_id": "iuh-khdl-ke-hoach-dao-tao-2023",
+  "institution": "Trường Đại học Công nghiệp Thành phố Hồ Chí Minh (IUH)",
+  "program": "Khoa học dữ liệu",
+  "program_code": "7460108",
+  "cohort": "2023",
+  "planned_credits": 162,
+  "source": {
+    "publisher": "Khoa Công nghệ Thông tin - IUH",
+    "url": "https://fit.iuh.edu.vn/upload/files/Chuong%20trinh%20khung%20_%202023(1).pdf",
+    "sha256": "526c16746f157f8b28a94560d41a50a7d1e411648490bbbdfe4ae8bf65df9d90",
+    "normalized_input": "data/normalized/curriculum/iuh-khdl-ke-hoach-dao-tao-2023.md",
+    "source_checked_on": "2026-11-24"
+  },
+  "field_definitions": {
+    "course_code": "Mã môn học trong PDF. Quan hệ giữa các môn tham chiếu mã này.",
+    "subject_code": "Mã học phần trong PDF.",
+    "prior_course": "Học trước (a)",
+    "prerequisite": "Tiên quyết (b)",
+    "corequisite": "Song hành (c)",
+    "source_page": "Trang PDF bắt đầu dòng học phần (trang đầu là 1)."
+  },
+  "scope_notes": [
+    "Áp dụng cho kế hoạch khóa tuyển sinh 2023. Khi tư vấn, xác nhận đúng khóa của sinh viên.",
+    "Tổng tín chỉ kế hoạch gồm Giáo dục thể chất và Giáo dục Quốc phòng và An ninh. Môn tự chọn chỉ tính theo số tín chỉ cần hoàn thành của nhóm.",
+    "Quan hệ được chép từ kế hoạch. Trường dependencies rỗng nghĩa là bảng kế hoạch không ghi quan hệ học phần cho dòng đó.",
+    "AV1 và AV2 được giữ theo bản chuẩn hóa. Cần văn bản liên quan để diễn giải các ghi chú này khi tư vấn.",
+    "Một số tên môn có dấu * trong PDF. Dấu này được lưu để đối chiếu; chưa diễn giải thành điều kiện học."
+  ],
+  "semesters": [
+    {
+      "semester": 1,
+      "planned_credits": 17,
+      "required_credits": 17,
+      "elective_credits": 0,
+      "elective_groups": [],
+      "courses": [
+        {
+          "course_code": "2101539",
+          "subject_code": "4203002009",
+          "name": "Nhập môn Tin học",
+          "name_en": "Foundations of Computing",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2120405",
+          "subject_code": "4203003307",
+          "name": "Giáo dục thể chất 1",
+          "name_en": "Physical Education 1",
+          "credits": 2,
+          "credits_as_printed": "2(0,4,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2101622",
+          "subject_code": "4203003848",
+          "name": "Nhập môn Lập trình",
+          "name_en": "Programming Fundamentals",
+          "credits": 2,
+          "credits_as_printed": "2(0,4,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": "AV1",
+          "source_page": 1
+        },
+        {
+          "course_code": "2112012",
+          "subject_code": "4203014164",
+          "name": "Triết học Mác - Lênin",
+          "name_en": "Philosophy of Marxism and Leninism",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2120503",
+          "subject_code": "4203016600",
+          "name": "Giáo dục Quốc phòng và An Ninh",
+          "name_en": "National Defence Education and Security",
+          "credits": 8,
+          "credits_as_printed": "8(6,4,16)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        }
+      ]
+    },
+    {
+      "semester": 2,
+      "planned_credits": 21,
+      "required_credits": 18,
+      "elective_credits": 3,
+      "elective_groups": [
+        {
+          "id": "hk2-nhom1",
+          "label": "Học phần tự chọn",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101405",
+          "subject_code": "4203000941",
+          "name": "Kỹ thuật lập trình",
+          "name_en": "Programming Techniques",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101622",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2101567",
+          "subject_code": "4203002137",
+          "name": "Hệ thống Máy tính",
+          "name_en": "Computer Systems",
+          "credits": 4,
+          "credits_as_printed": "4(3,2,8)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2132001",
+          "subject_code": "4203003192",
+          "name": "Kỹ năng làm việc nhóm",
+          "name_en": "Teamwork Skills",
+          "credits": 2,
+          "credits_as_printed": "2(1,2,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1,
+          "source_title_marker": "*"
+        },
+        {
+          "course_code": "2113431",
+          "subject_code": "4203003259",
+          "name": "Toán cao cấp 1",
+          "name_en": "Calculus 1",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2120406",
+          "subject_code": "4203003306",
+          "name": "Giáo dục thể chất 2",
+          "name_en": "Physical Education 2",
+          "credits": 2,
+          "credits_as_printed": "2(0,4,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2112013",
+          "subject_code": "4203014165",
+          "name": "Kinh tế chính trị Mác - Lênin",
+          "name_en": "Political Economics of Marxism and Leninism",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 1
+        },
+        {
+          "course_code": "2111108",
+          "subject_code": "4203015253",
+          "name": "Tiếng Anh 1",
+          "name_en": "English 1",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2113434",
+          "subject_code": "4203003193",
+          "name": "Toán ứng dụng",
+          "name_en": "Applied Mathematics",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk2-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2113436",
+          "subject_code": "4203003240",
+          "name": "Hàm phức và phép biến đổi Laplace",
+          "name_en": "Complex Analysis and Laplace Transform",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk2-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2113435",
+          "subject_code": "4203003320",
+          "name": "Phương pháp tính",
+          "name_en": "Numerical Analysis",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk2-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2113437",
+          "subject_code": "4203003345",
+          "name": "Vật lý đại cương",
+          "name_en": "General Physics",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk2-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2113438",
+          "subject_code": "4203003395",
+          "name": "Logic học",
+          "name_en": "Logics",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk2-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        }
+      ]
+    },
+    {
+      "semester": 3,
+      "planned_credits": 22,
+      "required_credits": 19,
+      "elective_credits": 3,
+      "elective_groups": [
+        {
+          "id": "hk3-nhom1",
+          "label": "Học phần tự chọn",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101402",
+          "subject_code": "4203000901",
+          "name": "Cấu trúc rời rạc",
+          "name_en": "Discrete Structures",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2101409",
+          "subject_code": "4203000942",
+          "name": "Cấu trúc dữ liệu và giải thuật",
+          "name_en": "Data Structures and Algorithms",
+          "credits": 4,
+          "credits_as_printed": "4(3,2,8)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101622",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2101436",
+          "subject_code": "4203001146",
+          "name": "Hệ cơ sở dữ liệu",
+          "name_en": "Database Systems",
+          "credits": 4,
+          "credits_as_printed": "4(3,2,8)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101539",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2113432",
+          "subject_code": "4203003288",
+          "name": "Toán cao cấp 2",
+          "name_en": "Calculus 2",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2101623",
+          "subject_code": "4203003591",
+          "name": "Lập trình hướng đối tượng",
+          "name_en": "Object Oriented Programming",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101622",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2111188",
+          "subject_code": "4203015254",
+          "name": "Tiếng Anh 2",
+          "name_en": "English 2",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2107402",
+          "subject_code": "4203001103",
+          "name": "Địa lý kinh tế",
+          "name_en": "Economic Geography",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2
+        },
+        {
+          "course_code": "2132002",
+          "subject_code": "4203003197",
+          "name": "Kỹ năng xây dựng kế hoạch",
+          "name_en": "Planning Skills",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2,
+          "source_title_marker": "*"
+        },
+        {
+          "course_code": "2123800",
+          "subject_code": "4203003206",
+          "name": "Môi trường và con người",
+          "name_en": "Environment and Human",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 2,
+          "source_title_marker": "*"
+        },
+        {
+          "course_code": "2101777",
+          "subject_code": "4203015296",
+          "name": "Công nghệ thông tin trong chuyển đổi số",
+          "name_en": "Information Technology in Digital Transformation",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2104486",
+          "subject_code": "4203015299",
+          "name": "Ứng dụng hóa học trong Công nghiệp",
+          "name_en": "Industrial Applications of Chemistry",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2104487",
+          "subject_code": "4203015300",
+          "name": "Ứng dụng 5S và Kaizen trong sản xuất",
+          "name_en": "Application of Kaizen Method and 5S Technique for Manufacturing",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk3-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3,
+          "source_title_marker": "*"
+        }
+      ]
+    },
+    {
+      "semester": 4,
+      "planned_credits": 20,
+      "required_credits": 15,
+      "elective_credits": 5,
+      "elective_groups": [
+        {
+          "id": "hk4-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        },
+        {
+          "id": "hk4-nhom2",
+          "label": "Nhóm 2",
+          "courses_to_select": 1,
+          "credits_to_complete": 2
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101435",
+          "subject_code": "4203001058",
+          "name": "Mạng máy tính",
+          "name_en": "Computer Networks",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": "AV1",
+          "source_page": 3
+        },
+        {
+          "course_code": "2131472",
+          "subject_code": "4203002422",
+          "name": "Pháp luật đại cương",
+          "name_en": "General laws",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2113433",
+          "subject_code": "4203003198",
+          "name": "Phương pháp luận nghiên cứu khoa học",
+          "name_en": "Research Methodology",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2101680",
+          "subject_code": "4203014104",
+          "name": "Nhập môn Khoa học Dữ liệu",
+          "name_en": "Introduction to Data Science",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 3
+        },
+        {
+          "course_code": "2101861",
+          "subject_code": "4203015410",
+          "name": "Nhập môn Kĩ thuật Dữ liệu",
+          "name_en": "Introduction to Data Engineering",
+          "credits": 2,
+          "credits_as_printed": "2(1,2,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2101864",
+          "subject_code": "4203015411",
+          "name": "Xác suất trong Khoa học Dữ liệu",
+          "name_en": "Probability for Data Science",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2101677",
+          "subject_code": "4203014062",
+          "name": "Giải thuật và tối ưu hóa phân tán",
+          "name_en": "Distributed Algorithms and Optimization",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk4-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2101678",
+          "subject_code": "4203014063",
+          "name": "Trực quan hóa dữ liệu",
+          "name_en": "Data Visualization",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk4-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 3
+        },
+        {
+          "course_code": "2101679",
+          "subject_code": "4203014064",
+          "name": "Đại số tuyến tính tính toán",
+          "name_en": "Numerical Linear Algebra",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk4-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 4
+        },
+        {
+          "course_code": "2101682",
+          "subject_code": "4203014106",
+          "name": "Quá trình ngẫu nhiên",
+          "name_en": "Random Processes",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "elective",
+          "elective_group_id": "hk4-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 4
+        },
+        {
+          "course_code": "2101683",
+          "subject_code": "4203014107",
+          "name": "Các ngôn ngữ truy vấn cơ sở dữ liệu",
+          "name_en": "Database Query Languages",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "elective",
+          "elective_group_id": "hk4-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 4
+        }
+      ]
+    },
+    {
+      "semester": 5,
+      "planned_credits": 18,
+      "required_credits": 15,
+      "elective_credits": 3,
+      "elective_groups": [
+        {
+          "id": "hk5-nhom1",
+          "label": "Học phần tự chọn",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101419",
+          "subject_code": "4203001266",
+          "name": "Trí tuệ nhân tạo",
+          "name_en": "Artificial Intelligence",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101402",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": "AV1",
+          "source_page": 4
+        },
+        {
+          "course_code": "2101655",
+          "subject_code": "4203003347",
+          "name": "Những vấn đề xã hội và đạo đức nghề nghiệp",
+          "name_en": "Social Issues and Professional Ethics",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 4
+        },
+        {
+          "course_code": "2101624",
+          "subject_code": "4203003451",
+          "name": "Thống kê máy tính và ứng dụng",
+          "name_en": "Statistics Computing and Applications",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101405",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 4
+        },
+        {
+          "course_code": "2101681",
+          "subject_code": "4203014105",
+          "name": "Lập trình phân tích dữ liệu",
+          "name_en": "Data Analysis Programming",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 4
+        },
+        {
+          "course_code": "2101685",
+          "subject_code": "4203014109",
+          "name": "Tối ưu hóa cho Khoa học dữ liệu",
+          "name_en": "optimization for Data Science",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 4
+        },
+        {
+          "course_code": "2101686",
+          "subject_code": "4203014110",
+          "name": "Phân tích chuỗi thời gian",
+          "name_en": "Time Series Analysis",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk5-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 4
+        },
+        {
+          "course_code": "2101687",
+          "subject_code": "4203014111",
+          "name": "Kỹ thuật tài chính",
+          "name_en": "Financial Engineering",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk5-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 4
+        },
+        {
+          "course_code": "2101698",
+          "subject_code": "4203014122",
+          "name": "Xử lý ảnh",
+          "name_en": "Digital Image Processing",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk5-nhom1",
+          "dependencies": [
+            {
+              "course_code": "2101405",
+              "type": "prior_course"
+            },
+            {
+              "course_code": "2101409",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 4
+        }
+      ]
+    },
+    {
+      "semester": 6,
+      "planned_credits": 20,
+      "required_credits": 14,
+      "elective_credits": 6,
+      "elective_groups": [
+        {
+          "id": "hk6-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        },
+        {
+          "id": "hk6-nhom2",
+          "label": "Nhóm 2",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101627",
+          "subject_code": "4203003443",
+          "name": "Khai thác dữ liệu và ứng dụng",
+          "name_en": "Data mining and application",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101436",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": "AV2",
+          "source_page": 4
+        },
+        {
+          "course_code": "2101657",
+          "subject_code": "4203003501",
+          "name": "Phát triển ứng dụng",
+          "name_en": "Application Development",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 4
+        },
+        {
+          "course_code": "2101631",
+          "subject_code": "4203003711",
+          "name": "Máy học",
+          "name_en": "Machine Learning",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101436",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2112014",
+          "subject_code": "4203014167",
+          "name": "Chủ nghĩa xã hội khoa học",
+          "name_en": "Scientific Socialism",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101863",
+          "subject_code": "4203015412",
+          "name": "Kiến trúc hướng dịch vụ và Điện toán đám mây",
+          "name_en": "Service-Oriented Architecture and Cloud Computing",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101428",
+          "subject_code": "4203001076",
+          "name": "Tương tác người máy",
+          "name_en": "Human Computer Interaction",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [
+            {
+              "course_code": "2101567",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": "AV2",
+          "source_page": 5
+        },
+        {
+          "course_code": "2101544",
+          "subject_code": "4203003453",
+          "name": "Tiếp thị điện tử",
+          "name_en": "E-marketing",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101688",
+          "subject_code": "4203014112",
+          "name": "Nhập môn Robot",
+          "name_en": "Introduction to Robotics",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101689",
+          "subject_code": "4203014113",
+          "name": "Giao dịch định lượng",
+          "name_en": "Quantitative Trading",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk6-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 5
+        },
+        {
+          "course_code": "2101420",
+          "subject_code": "4203001111",
+          "name": "Công nghệ phần mềm",
+          "name_en": "Software Engineering",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk6-nhom2",
+          "dependencies": [
+            {
+              "course_code": "2101436",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101690",
+          "subject_code": "4203014114",
+          "name": "Tính toán song song",
+          "name_en": "Parallel Computing",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk6-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101691",
+          "subject_code": "4203014115",
+          "name": "Khai phá đồ thị",
+          "name_en": "Graph Mining",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk6-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        }
+      ]
+    },
+    {
+      "semester": 7,
+      "planned_credits": 16,
+      "required_credits": 10,
+      "elective_credits": 6,
+      "elective_groups": [
+        {
+          "id": "hk7-nhom1",
+          "label": "Nhóm 1",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        },
+        {
+          "id": "hk7-nhom2",
+          "label": "Nhóm 2",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2112005",
+          "subject_code": "4203000664",
+          "name": "Tư tưởng Hồ Chí Minh",
+          "name_en": "Ho Chi Minh Ideology",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101582",
+          "subject_code": "4203002329",
+          "name": "Nhập môn dữ liệu lớn",
+          "name_en": "Introduction to big data",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [
+            {
+              "course_code": "2101436",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": "AV2",
+          "source_page": 5
+        },
+        {
+          "course_code": "2101650",
+          "subject_code": "4203004116",
+          "name": "Học sâu",
+          "name_en": "Deep learning",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 5
+        },
+        {
+          "course_code": "2112015",
+          "subject_code": "4203014169",
+          "name": "Lịch sử Đảng Cộng sản Việt Nam",
+          "name_en": "History of Vietnamese Communist Party",
+          "credits": 2,
+          "credits_as_printed": "2(2,0,4)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 5
+        },
+        {
+          "course_code": "2101411",
+          "subject_code": "4203001004",
+          "name": "Nhập môn an toàn thông tin",
+          "name_en": "Introduction to Information Security",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [
+            {
+              "course_code": "2101567",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        },
+        {
+          "course_code": "2101692",
+          "subject_code": "4203014116",
+          "name": "Hệ khuyến nghị",
+          "name_en": "Recommendation Systems",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        },
+        {
+          "course_code": "2101693",
+          "subject_code": "4203014117",
+          "name": "Lý thuyết trò chơi",
+          "name_en": "Game Theory",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        },
+        {
+          "course_code": "2106529",
+          "subject_code": "4203003194",
+          "name": "Hội họa",
+          "name_en": "Fine Art",
+          "credits": 3,
+          "credits_as_printed": "3(1,4,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6,
+          "source_title_marker": "*"
+        },
+        {
+          "course_code": "2113439",
+          "subject_code": "4203003195",
+          "name": "Xã hội học",
+          "name_en": "Sociology",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        },
+        {
+          "course_code": "2112011",
+          "subject_code": "4203003203",
+          "name": "Âm nhạc – Nhạc lý và Guitar căn bản",
+          "name_en": "Music - Music Theory and Guitar Basics",
+          "credits": 3,
+          "credits_as_printed": "3(1,4,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6,
+          "source_title_marker": "*"
+        },
+        {
+          "course_code": "2111492",
+          "subject_code": "4203003245",
+          "name": "Tiếng Việt thực hành",
+          "name_en": "Vietnamese Language in Use",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        },
+        {
+          "course_code": "2110585",
+          "subject_code": "4203003325",
+          "name": "Tâm lý học đại cương",
+          "name_en": "Psychology",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6,
+          "source_title_marker": "*"
+        },
+        {
+          "course_code": "2111491",
+          "subject_code": "4203010665",
+          "name": "Cơ sở văn hóa Việt Nam",
+          "name_en": "Introduction to Vietnamese Culture",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        },
+        {
+          "course_code": "2101727",
+          "subject_code": "4203014193",
+          "name": "Kỹ năng sử dụng bàn phím và thiết bị văn phòng",
+          "name_en": "Using keyboard and office equipment skills",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk7-nhom2",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        }
+      ]
+    },
+    {
+      "semester": 8,
+      "planned_credits": 15,
+      "required_credits": 12,
+      "elective_credits": 3,
+      "elective_groups": [
+        {
+          "id": "hk8-nhom1",
+          "label": "Học phần tự chọn",
+          "courses_to_select": 1,
+          "credits_to_complete": 3
+        }
+      ],
+      "courses": [
+        {
+          "course_code": "2101444",
+          "subject_code": "4203001385",
+          "name": "Xử lý ngôn ngữ tự nhiên",
+          "name_en": "Natural Language Processing",
+          "credits": 3,
+          "credits_as_printed": "3(3,0,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 6
+        },
+        {
+          "course_code": "2101561",
+          "subject_code": "4203003147",
+          "name": "Công nghệ mới trong phát triển ứng dụng CNTT",
+          "name_en": "New Technology in the Application Development",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 6
+        },
+        {
+          "course_code": "2101694",
+          "subject_code": "4203014118",
+          "name": "Thị giác máy tính",
+          "name_en": "Computer Vision",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 7
+        },
+        {
+          "course_code": "2101724",
+          "subject_code": "4203014180",
+          "name": "Các nền tảng dữ liệu",
+          "name_en": "Data platforms",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 7
+        },
+        {
+          "course_code": "2101634",
+          "subject_code": "4203003592",
+          "name": "Đảm bảo chất lượng và Kiểm thử phần mềm",
+          "name_en": "Software Quality Assurance and Testing",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [
+            {
+              "course_code": "2101420",
+              "type": "prior_course"
+            }
+          ],
+          "notes_as_transcribed": "AV1",
+          "source_page": 7
+        },
+        {
+          "course_code": "2101695",
+          "subject_code": "4203014119",
+          "name": "Phân tích dữ liệu Bayesian",
+          "name_en": "Bayesian Data Analysis",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 7
+        },
+        {
+          "course_code": "2101696",
+          "subject_code": "4203014120",
+          "name": "Phân tích kinh doanh",
+          "name_en": "Bussiness Analysis",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 7
+        },
+        {
+          "course_code": "2101697",
+          "subject_code": "4203014121",
+          "name": "Giải tích ngẫu nhiên cho tài chính",
+          "name_en": "Stochastic Calculus for Finance",
+          "credits": 3,
+          "credits_as_printed": "3(2,2,6)",
+          "type": "elective",
+          "elective_group_id": "hk8-nhom1",
+          "dependencies": [],
+          "notes_as_transcribed": "AV2",
+          "source_page": 7
+        }
+      ]
+    },
+    {
+      "semester": 9,
+      "planned_credits": 13,
+      "required_credits": 13,
+      "elective_credits": 0,
+      "elective_groups": [],
+      "courses": [
+        {
+          "course_code": "2101521",
+          "subject_code": "4203003098",
+          "name": "Thực tập doanh nghiệp",
+          "name_en": "Internship",
+          "credits": 5,
+          "credits_as_printed": "5(0,10,10)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 7
+        },
+        {
+          "course_code": "2101700",
+          "subject_code": "4203014170",
+          "name": "Khóa luận tốt nghiệp",
+          "name_en": "Graduation Thesis",
+          "credits": 8,
+          "credits_as_printed": "8(0,16,16)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 7
+        },
+        {
+          "course_code": "2199451",
+          "subject_code": "4203015216",
+          "name": "Chứng chỉ Tiếng Anh",
+          "name_en": "Certificate of English Language Proficiency",
+          "credits": 0,
+          "credits_as_printed": "0(0,0,0)",
+          "type": "required",
+          "elective_group_id": null,
+          "dependencies": [],
+          "notes_as_transcribed": null,
+          "source_page": 7
+        }
+      ]
+    }
+  ]
+}

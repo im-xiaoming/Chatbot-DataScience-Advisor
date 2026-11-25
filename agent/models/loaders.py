@@ -58,18 +58,3 @@ def load_llm_model(
     )
     return model
 
-
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-
-@lru_cache(maxsize=16)
-def load_cross_encoder_model(
-    model_name: str = 'BAAI/bge-reranker-v2-m3'
-) -> tuple[AutoTokenizer, AutoModelForSequenceClassification]:
-    
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
-    tokenizer = AutoTokenizer.from_pretrained('BAAI/bge-reranker-v2-m3')
-    model = AutoModelForSequenceClassification.from_pretrained('BAAI/bge-reranker-v2-m3').to(device)
-    model.eval()
-    
-    return (tokenizer, model)
