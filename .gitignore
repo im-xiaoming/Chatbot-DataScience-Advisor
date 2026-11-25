@@ -2,3 +2,7 @@ __pycache__
 .env
 .venv
 .mypy_cache
+data/app.db*
+eval/out/**/*.jsonl
+eval/out/feedback.jsonl
+eval/out/logs/
