@@ -30,6 +30,14 @@ class QdrantConfig(Base):
     host: str = Field(default='localhost')
     
     
+class APIConfig(Base):
+    """Cấu hình api/main.py, đọc từ biến môi trường RERANK, NUM_CTX, TOP_K."""
+    rerank: bool = Field(default=False)  # RERANK=1: sắp xếp lại bằng cross-encoder
+    num_ctx: int = Field(default=8192)  # cửa sổ ngữ cảnh của Ollama
+    # 8 x 1500 ký tự vừa ngân sách ngữ cảnh 12.000; đo bằng eval: k=6 -> 76%, k=8 -> 84% câu có tài liệu đúng
+    top_k: int = Field(default=8)
+
+
 class CrossEncoderConfig(Base):
     model_name: str = Field(default='BAAI/bge-reranker-v2-m3')
     

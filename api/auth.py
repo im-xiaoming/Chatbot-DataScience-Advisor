@@ -355,7 +355,7 @@ class RegisterIn(BaseModel):
     """Body của POST /auth/register."""
 
     username: str = Field(min_length=3, max_length=32)
-    password: str = Field(min_length=8, max_length=128)
+    password: str = Field(min_length=1, max_length=128)  # đặt tùy ý, chỉ cần không rỗng
     display_name: str | None = Field(default=None, max_length=60)
 
 
@@ -383,8 +383,6 @@ async def register(body: RegisterIn):
     username = body.username.strip()
     if not USERNAME_RE.match(username):
         raise HTTPException(422, "Tên đăng nhập 3–32 ký tự, chỉ gồm chữ không dấu, số, dấu _ hoặc .")
-    if body.password.isdigit() or body.password.lower() == username.lower():
-        raise HTTPException(422, "Mật khẩu quá dễ đoán: không dùng toàn số hoặc trùng tên đăng nhập")
     name = (body.display_name or "").strip() or username
     return _session(get_store().create_user(username, name, body.password))
 

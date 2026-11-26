@@ -53,9 +53,14 @@ def test_register_login_me(client):
 
 
 @pytest.mark.parametrize("username,password", [("ab", "matkhau-an-toan"), ("có dấu", "matkhau-an-toan"),
-                                               ("sv02", "12345678"), ("sv02", "ngan")])
+                                               ("sv02", "")])
 def test_register_validates_input(client, username, password):
     assert client.post("/auth/register", json={"username": username, "password": password}).status_code == 422
+
+
+@pytest.mark.parametrize("password", ["1", "12345678", "sv03"])
+def test_register_accepts_any_password(client, password):
+    assert client.post("/auth/register", json={"username": "sv03", "password": password}).status_code == 201
 
 
 def test_login_is_locked_after_repeated_failures(client):

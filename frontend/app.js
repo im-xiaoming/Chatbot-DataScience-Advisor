@@ -439,9 +439,8 @@ $('pwToggle').onclick = () => {
 };
 function checkAuthForm(f) {
   if (!/^[A-Za-z0-9_.]{3,32}$/.test(f.username)) return 'Tên đăng nhập 3–32 ký tự, chỉ gồm chữ không dấu, số, dấu _ hoặc .';
-  if (authTab === 'login') return f.password ? null : 'Vui lòng nhập mật khẩu.';
-  if (f.password.length < 8) return 'Mật khẩu cần tối thiểu 8 ký tự.';
-  if (/^\d+$/.test(f.password)) return 'Mật khẩu không nên chỉ gồm chữ số.';
+  if (!f.password) return 'Vui lòng nhập mật khẩu.';
+  if (authTab === 'login') return null;
   if (f.password !== f.password2) return 'Hai lần nhập mật khẩu chưa khớp.';
   return null;
 }

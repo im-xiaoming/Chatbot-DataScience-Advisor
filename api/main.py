@@ -1,8 +1,6 @@
 """API chat stream từng token (SSE).
 
-Chọn nguồn bằng biến môi trường, mặc định dùng Ollama thật + tìm kiếm giả:
-  RETRIEVER=fake | qdrant   (fake: tìm trong data/chunks.jsonl, không cần Qdrant)
-  LLM=ollama | fake         (fake: câu trả lời mẫu, dùng cho test và khi tắt Ollama)
+Tìm kiếm hybrid trên Qdrant, sinh câu trả lời bằng Ollama. Cấu hình bằng biến môi trường:
   RERANK=1                  sắp xếp lại bằng cross-encoder bge-reranker-v2-m3 của nhóm (tải model lần đầu)
   NUM_CTX=8192              cửa sổ ngữ cảnh gửi cho Ollama (tăng nếu máy đủ RAM/VRAM)
   TOP_K=8                   số chunk lấy về cho mỗi câu hỏi (lý do chọn 8: xem chú thích ở dòng TOP_K)
@@ -19,7 +17,6 @@ eval/run_answers.py import generator, llm, retrieve từ file này để chấm 
 """
 import asyncio
 import json
-import os
 import time
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any
@@ -29,39 +26,25 @@ from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from agent.models import load_llm_model
 from api.auth import auth_required, chat_user, get_store
 from api.auth import router as auth_router
+from api.rag_service import retrieve
 from api.types import DoneEvent, MessageMeta
+from config import APIConfig, LLMConfig
 from rag.generation import Generator, default_catalog, detect_intent, extract_citations
 
 if TYPE_CHECKING:
     from api.auth import Store
     from api.types import Conversation
 
-RETRIEVER = os.getenv("RETRIEVER", "fake")
-LLM = os.getenv("LLM", "ollama")
-if os.getenv("FAKE_RAG") == "1":  # cách bật cũ: giả cả hai
-    RETRIEVER, LLM = "fake", "fake"
-RERANK = os.getenv("RERANK", "0") == "1"
-NUM_CTX = int(os.getenv("NUM_CTX", "8192"))  # cửa sổ ngữ cảnh của Ollama
-TOP_K = int(os.getenv("TOP_K", "8"))  # 8 x 1500 ký tự vừa ngân sách ngữ cảnh 12.000; đo bằng eval: k=6 -> 76%, k=8 -> 84% câu có tài liệu đúng
+_api = APIConfig()
+RERANK, NUM_CTX, TOP_K = _api.rerank, _api.num_ctx, _api.top_k
 # Đo lại trên Qdrant (10 câu đầu, 23/11): k=6 recall ý 0,80 / tổng 39 s; k=8 recall 0,89 / tổng 51 s -> giữ 8.
 
-if RETRIEVER == "qdrant":
-    from api.rag_service import retrieve
-else:
-    # mypy báo khác chữ ký (bản giả không có tham số strategy); main chỉ gọi với (câu, category, k=...) nên dùng được cả hai
-    from api.fake import fake_retrieve as retrieve  # type: ignore[assignment]
-
-if LLM == "ollama":
-    from agent.models import load_llm_model
-    from config import LLMConfig
-    _cfg = LLMConfig()
-    # Prompt dài nhất của bộ eval ~3.800 token; mặc định 32.768 của loader làm Ollama hết RAM trên máy 16 GB
-    llm = load_llm_model(model_name=_cfg.model_name, model_provider=_cfg.model_provider, num_ctx=NUM_CTX)
-else:
-    from api.fake import FakeLLM
-    llm = FakeLLM()
+_cfg = LLMConfig()
+# Prompt dài nhất của bộ eval ~3.800 token; mặc định 32.768 của loader làm Ollama hết RAM trên máy 16 GB
+llm = load_llm_model(model_name=_cfg.model_name, model_provider=_cfg.model_provider, num_ctx=NUM_CTX)
 
 generator = Generator(llm)
 reranker = None
@@ -106,7 +89,7 @@ app = FastAPI(title="Cố vấn lộ trình KHDL")
 @app.get("/health")
 async def health():
     """Cấu hình đang chạy; giao diện đọc khi tải trang để hiện chế độ và biết có cần đăng nhập không."""
-    return {"retriever": RETRIEVER, "llm": LLM, "rerank": RERANK, "auth": auth_required()}
+    return {"retriever": "qdrant", "llm": "ollama", "rerank": RERANK, "auth": auth_required()}
 
 
 @app.post("/chat")
