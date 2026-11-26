@@ -80,7 +80,7 @@ async def main() -> None:
         strategies = {s: (lambda q, k, s=s: retrieve(q, k=k, strategy=s)) for s in a.strategies.split(",")}  # type: ignore[misc]  # s=s giữ giá trị s của từng vòng; mypy không suy được kiểu lambda có tham số mặc định
 
     if a.rerank:
-        from api.rerank import Reranker
+        from rag.rerank import Reranker
         rr = Reranker()
         for name, fn in list(strategies.items()):
             async def reranked(q: str, k: int, fn: Strategy = fn) -> list[Point]:

@@ -16,8 +16,8 @@ from db.qdrant_db.session import create
 from utils import save_to_db
 
 from config import RecursiveCharacterTextSplitterConfig, EmbeddingsConfig, QdrantConfig, \
-LLMConfig, CrossEncoderConfig
-from rag.rerank import CrossEncoder, format_query
+LLMConfig
+from rag.rerank import Reranker, format_query
 
 from agent.prompt import CONTEXT_SYSTEM_PROMPT, CONTEXT_USER_PROMPT
 
@@ -95,14 +95,8 @@ async def main():
     query_points = format_query(response.points)
     
     # ================================ Cross Encoding ===============================
-    cross_encoder = CrossEncoder(
-        config=CrossEncoderConfig()
-    )
-    
-    cross_results = await cross_encoder.encoder(
-        query=query,
-        docs=[point.page_content for point in query_points],
-        topk=10
+    cross_results = await asyncio.to_thread(
+        Reranker().rerank, query, [point.model_dump() for point in query_points], 10
     )
     
 

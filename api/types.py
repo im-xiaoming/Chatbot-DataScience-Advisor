@@ -54,6 +54,7 @@ class MessageMeta(TypedDict, total=False):
     Tên khoá theo camelCase ở courseCheck vì frontend/app.js đọc thẳng các khoá này.
     """
 
+    route: str                  # "rag" (gọi search_documents), "clarify" (hỏi lại người dùng) hoặc "small_talk" (agent/agent.py)
     query: str                  # câu hỏi sau bước viết lại, nếu khác câu gốc
     sources: list[Source]
     cited: list[int]

@@ -6,6 +6,7 @@
  *   query        {query}              câu hỏi sau khi viết lại (chỉ có khi khác câu gốc, tức câu nối tiếp)
  *   sources      {intent, sources[]}  các nguồn [1..n]: title, url, category, section_path, score, snippet
  *   (mặc định)   {token}              từng mẩu câu trả lời (không có dòng "event:")
+ *   clarify      {question, thread_id} câu hỏi chưa rõ, agent hỏi lại: gửi thread_id ở tin nhắn sau để agent chạy tiếp
  *   done         {cited, invalid_citations, course_check, first_token_ms, total_ms}
  *   error        {message}            lỗi phía máy chủ; luồng kết thúc
  *
@@ -353,13 +354,14 @@ async function send(text) {
   input.value = ''; autosize();
 
   controller = new AbortController(); composer.classList.add('busy');
+  const threadId = chat.threadId; chat.threadId = null; // chỉ dùng cho đúng tin nhắn ngay sau câu hỏi lại
   let raf = 0;
   const paint = () => { raf = 0; fillBot(el, msg, true); toBottom(); };
   try {
     const res = await api('/chat', {
       method: 'POST', signal: controller.signal,
-      body: JSON.stringify({ question: text, category: $('category').value || null, goal: state.goal || null,
-                             history, conversation_id: chat.id }),
+      body: JSON.stringify({ question: text, filters: $('category').value ? { category: $('category').value } : null, goal: state.goal || null,
+                             history, conversation_id: chat.id, thread_id: threadId || null }),
     });
     if (!res.ok) { msg.error = await errorText(res); return; }
     const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
@@ -384,6 +386,7 @@ async function send(text) {
           msg.sources = data.sources;
           el.querySelector('.status').textContent = `Đã tìm thấy ${data.sources.length} tài liệu, đang soạn câu trả lời…`;
           el.querySelector('.src-slot').innerHTML = sourcesHtml(msg.sources);
+        } else if (event === 'clarify') { chat.threadId = data.thread_id; // agent đang chờ câu trả lời cho câu hỏi lại
         } else if (event === 'done') { msg.timing = data; msg.cited = data.cited; msg.courseCheck = data.course_check; }
         else if (event === 'error') msg.error = `Có lỗi ở máy chủ: ${data.message}`;
         else if (data.token) { msg.content += data.token; if (!raf) raf = requestAnimationFrame(paint); }

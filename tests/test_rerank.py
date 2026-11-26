@@ -1,4 +1,4 @@
-from api.rerank import Reranker
+from rag.rerank import Reranker
 
 
 def overlap_scorer(pairs):

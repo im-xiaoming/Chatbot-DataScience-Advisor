@@ -7,4 +7,4 @@ eval/out/**/*.jsonl
 eval/out/feedback.jsonl
 eval/out/logs/
 test.py
-pipline.py
+pipeline.py

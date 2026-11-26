@@ -23,3 +23,17 @@ def make_chunk():
         )
         return ChunkRecord(**{**base, **kw})
     return _make
+
+
+@pytest.fixture(scope="session")
+def app_client():
+    """Một TestClient (một event loop) cho cả phiên test.
+
+    Chat model Ollama giữ client HTTP async gắn với event loop đầu tiên dùng nó; mỗi TestClient mới (hoặc mỗi
+    request của TestClient không mở bằng `with`) chạy loop khác nên request sau báo "Event loop is closed".
+    """
+    from fastapi.testclient import TestClient
+
+    from api.main import app
+    with TestClient(app) as c:
+        yield c
