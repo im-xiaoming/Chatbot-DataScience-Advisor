@@ -1,24 +1,21 @@
-"""Sắp xếp lại kết quả tìm kiếm bằng cross-encoder của nhóm 3 (rag/rerank/CrossEncoder, BAAI/bge-reranker-v2-m3).
+"""Sắp xếp lại kết quả tìm kiếm bằng cross-encoder (rag/rerank/cross_encoder.py) và giữ top_k.
 
-Bật bằng RERANK=1: API lấy 2 x TOP_K chunk, rerank rồi giữ TOP_K. Lần đầu sẽ tải model (~2 GB) từ Hugging Face.
-Nằm giữa bước tìm kiếm và Generator.select_points trong api/main.py; eval/run_retrieval.py --rerank cũng dùng.
-
-Lưu ý: import thẳng CrossEncoderConfig từ config.config vì config/__init__.py của nhóm chưa export lớp này
-(đã báo trong eval/BUGS_FOR_TEAM.md); khi nhóm export rồi có thể đổi lại thành `from config import ...`.
+Bật API bằng RERANK=1: agent lấy 2 x TOP_K chunk, rerank rồi giữ TOP_K (node search_documents, agent/agent.py).
+eval/run_retrieval.py --rerank cũng dùng. Lần đầu sẽ tải model (~2 GB) từ Hugging Face.
 """
 from __future__ import annotations
 
 from collections.abc import Callable, Sequence
 
 from rag.generation.types import Point
+from rag.rerank.cross_encoder import CrossEncoder
 
 Scorer = Callable[[list[tuple[str, str]]], Sequence[float]]  # (câu hỏi, nội dung chunk) -> điểm liên quan
 
 
-def _team_cross_encoder() -> Scorer:
-    """Tải cross-encoder của nhóm (import trễ vì kéo theo torch, ~1,5 GB bộ nhớ)."""
-    from config.config import CrossEncoderConfig
-    from rag.rerank import CrossEncoder
+def _load_scorer() -> Scorer:
+    """Tải cross-encoder theo config.CrossEncoderConfig (~1,5 GB bộ nhớ)."""
+    from config import CrossEncoderConfig
     model = CrossEncoder(CrossEncoderConfig())
     return lambda pairs: model(pairs).tolist()
 
@@ -27,7 +24,7 @@ class Reranker:
     """Chấm lại điểm (câu hỏi, chunk) bằng cross-encoder và giữ top_k.
 
     Args:
-        scorer: hàm chấm điểm; None = dùng cross-encoder của nhóm, tải ở lần rerank đầu tiên.
+        scorer: hàm chấm điểm; None = dùng CrossEncoder, tải ở lần rerank đầu tiên.
             Test truyền hàm giả để không phải tải model.
         batch_size: số cặp (câu hỏi, chunk) chấm trong một lần gọi model.
     """
@@ -40,7 +37,7 @@ class Reranker:
     def scorer(self) -> Scorer:
         """Hàm chấm điểm; tải model khi dùng lần đầu."""
         if self._scorer is None:  # tải model khi dùng lần đầu
-            self._scorer = _team_cross_encoder()
+            self._scorer = _load_scorer()
         return self._scorer
 
     def rerank(self, query: str, points: list[Point], top_k: int) -> list[Point]:

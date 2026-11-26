@@ -9,13 +9,12 @@ from __future__ import annotations
 import os
 
 from langchain_ollama import OllamaEmbeddings
-from qdrant_client import models
 
 from config import EmbeddingsConfig
 from db import create_qdrant_client
 from rag.embeddings import ModelEmbeddings, SparseEmbedding
 from rag.generation.types import Point
-from rag.retrieval import QdrantSearch
+from rag.retrieval import MetadataFilter, QdrantSearch
 
 COLLECTION = "QQ"  # trùng với --collection_name khi chạy pipline.py
 
@@ -33,19 +32,13 @@ else:
 searcher = QdrantSearch(collection_name=COLLECTION, client=create_qdrant_client)
 
 
-def _category_filter(category: str | None) -> models.Filter | None:
-    """Bộ lọc Qdrant theo payload "category"; None = không lọc."""
-    if not category:
-        return None
-    return models.Filter(must=[models.FieldCondition(key="category", match=models.MatchValue(value=category))])
-
-
-async def retrieve(question: str, category: str | None = None, k: int = 5, strategy: str = "hybrid") -> list[Point]:
+async def retrieve(question: str, filters: MetadataFilter | None = None, k: int = 5,
+                   strategy: str = "hybrid") -> list[Point]:
     """Tìm k chunk liên quan nhất tới câu hỏi.
 
     Args:
         question: câu tìm kiếm (đã qua Generator.search_query).
-        category: chỉ tìm trong một loại tài liệu (curriculum, regulation, ...); None = tất cả.
+        filters: lọc theo metadata (category, publisher, ngày ban hành, hiệu lực...); None = không lọc.
         k: số chunk trả về. API dùng TOP_K=8 (xem api/main.py).
         strategy: "hybrid" | "dense" | "sparse".
 
@@ -56,7 +49,7 @@ async def retrieve(question: str, category: str | None = None, k: int = 5, strat
         ValueError: strategy không hợp lệ.
         RuntimeError: QdrantSearch trả None (nó nuốt lỗi kết nối và chỉ ghi log).
     """
-    flt = _category_filter(category)
+    flt = filters.to_qdrant() if filters else None
     sparse = SparseEmbedding.sparse_query(question)
     if strategy == "hybrid":
         res = await searcher.hybrid_search(

@@ -6,4 +6,5 @@ data/app.db*
 eval/out/**/*.jsonl
 eval/out/feedback.jsonl
 eval/out/logs/
-main.py
+test.py
+pipeline.py

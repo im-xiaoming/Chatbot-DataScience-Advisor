@@ -1,26 +1,26 @@
 """API chat stream từng token (SSE).
 
-Chọn nguồn bằng biến môi trường, mặc định dùng Ollama thật + tìm kiếm giả:
-  RETRIEVER=fake | qdrant   (fake: tìm trong data/chunks.jsonl, không cần Qdrant)
-  LLM=ollama | fake         (fake: câu trả lời mẫu, dùng cho test và khi tắt Ollama)
+Tìm kiếm hybrid trên Qdrant, sinh câu trả lời bằng Ollama. Cấu hình bằng biến môi trường:
   RERANK=1                  sắp xếp lại bằng cross-encoder bge-reranker-v2-m3 của nhóm (tải model lần đầu)
   NUM_CTX=8192              cửa sổ ngữ cảnh gửi cho Ollama (tăng nếu máy đủ RAM/VRAM)
   TOP_K=8                   số chunk lấy về cho mỗi câu hỏi (lý do chọn 8: xem chú thích ở dòng TOP_K)
   AUTH_REQUIRED, APP_DB, AUTH_SECRET, TOKEN_DAYS: xem api/auth.py
 Chạy:  uv run uvicorn api.main:app --reload   rồi mở http://localhost:8000
 
-Luồng một câu hỏi:
-  viết lại câu hỏi nối tiếp -> tìm kiếm -> chọn chunk vừa ngữ cảnh -> dựng prompt -> stream token
-Sự kiện SSE: conversation (id hội thoại đã lưu) · query (câu hỏi đã viết lại) · sources · token · done · error
+Luồng một câu hỏi (agent/agent.py):
+  LLM agent có tool search_documents -> không gọi tool: trả lời thẳng (chào hỏi, chat vu vơ)
+                                    -> gọi tool (RAG): tìm kiếm query -> chọn chunk -> dựng prompt -> stream token
+                                    -> gọi ask_user: câu hỏi chưa rõ, dừng (interrupt) chờ người dùng trả lời
+Sự kiện SSE: conversation (id hội thoại đã lưu) · route (small_talk | rag | clarify) · query (câu hỏi đã viết lại)
+             · sources · token · clarify (câu hỏi lại + thread_id) · done · error
 
 Đăng nhập: /chat cần header "Authorization: Bearer <token>" (lấy từ /auth/login), trừ khi AUTH_REQUIRED=0.
 Người đã đăng nhập: câu hỏi và câu trả lời được lưu theo conversation_id (api/auth.py), lịch sử lấy từ máy chủ.
 eval/run_answers.py import generator, llm, retrieve từ file này để chấm đúng cấu hình như API thật.
 """
-import asyncio
 import json
-import os
-import time
+import re
+import uuid
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any
 
@@ -29,45 +29,36 @@ from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from agent.agent import Agent
+from agent.models import load_llm_model
 from api.auth import auth_required, chat_user, get_store
 from api.auth import router as auth_router
-from api.types import DoneEvent, MessageMeta
-from rag.generation import Generator, default_catalog, detect_intent, extract_citations
+from api.rag_service import retrieve
+from api.types import MessageMeta
+from config import APIConfig, LLMConfig
+from rag.generation import Generator
+from rag.retrieval import MetadataFilter
 
 if TYPE_CHECKING:
     from api.auth import Store
     from api.types import Conversation
 
-RETRIEVER = os.getenv("RETRIEVER", "fake")
-LLM = os.getenv("LLM", "ollama")
-if os.getenv("FAKE_RAG") == "1":  # cách bật cũ: giả cả hai
-    RETRIEVER, LLM = "fake", "fake"
-RERANK = os.getenv("RERANK", "0") == "1"
-NUM_CTX = int(os.getenv("NUM_CTX", "8192"))  # cửa sổ ngữ cảnh của Ollama
-TOP_K = int(os.getenv("TOP_K", "8"))  # 8 x 1500 ký tự vừa ngân sách ngữ cảnh 12.000; đo bằng eval: k=6 -> 76%, k=8 -> 84% câu có tài liệu đúng
+_api = APIConfig()
+RERANK, NUM_CTX, TOP_K = _api.rerank, _api.num_ctx, _api.top_k
 # Đo lại trên Qdrant (10 câu đầu, 23/11): k=6 recall ý 0,80 / tổng 39 s; k=8 recall 0,89 / tổng 51 s -> giữ 8.
 
-if RETRIEVER == "qdrant":
-    from api.rag_service import retrieve
-else:
-    # mypy báo khác chữ ký (bản giả không có tham số strategy); main chỉ gọi với (câu, category, k=...) nên dùng được cả hai
-    from api.fake import fake_retrieve as retrieve  # type: ignore[assignment]
-
-if LLM == "ollama":
-    from agent.models import load_llm_model
-    from config import LLMConfig
-    _cfg = LLMConfig()
-    # Prompt dài nhất của bộ eval ~3.800 token; mặc định 32.768 của loader làm Ollama hết RAM trên máy 16 GB
-    llm = load_llm_model(model_name=_cfg.model_name, model_provider=_cfg.model_provider, num_ctx=NUM_CTX)
-else:
-    from api.fake import FakeLLM
-    llm = FakeLLM()
+_cfg = LLMConfig()
+# Prompt dài nhất của bộ eval ~3.800 token; mặc định 32.768 của loader làm Ollama hết RAM trên máy 16 GB
+llm = load_llm_model(model_name=_cfg.model_name, model_provider=_cfg.model_provider, num_ctx=NUM_CTX)
 
 generator = Generator(llm)
 reranker = None
 if RERANK:
-    from api.rerank import Reranker
+    from rag.rerank import Reranker
     reranker = Reranker()
+agent = Agent(generator, retrieve, top_k=TOP_K, reranker=reranker)
+
+ANON_THREAD = re.compile(r"anon-[0-9a-f]{32}")  # thread_id hợp lệ của người chưa đăng nhập
 
 
 class Turn(BaseModel):
@@ -81,10 +72,14 @@ class ChatRequest(BaseModel):
     """Body của POST /chat."""
 
     question: str
-    category: str | None = None
+    filters: MetadataFilter | None = None  # lọc metadata khi tìm kiếm, ví dụ {"category": "regulation"}
     goal: str | None = None            # Data Analyst, Data Scientist, ...
     history: list[Turn] = Field(default_factory=list)  # chỉ dùng khi không đăng nhập (AUTH_REQUIRED=0)
     conversation_id: int | None = None                  # bỏ trống = tạo cuộc trò chuyện mới
+    # thread_id của sự kiện "clarify" lượt trước, để câu này được hiểu là câu trả lời cho câu hỏi lại.
+    # Chỉ dùng khi chưa đăng nhập và đúng dạng "anon-<32 hex>"; người đã đăng nhập luôn dùng "conv-<conversation_id>".
+    # Không chặn bằng pattern ở đây: giao diện gửi lại cả thread "conv-..." và request bị 422 oan.
+    thread_id: str | None = Field(default=None, max_length=64)
 
 
 def sse(data: Any, event: str | None = None) -> str:
@@ -106,7 +101,7 @@ app = FastAPI(title="Cố vấn lộ trình KHDL")
 @app.get("/health")
 async def health():
     """Cấu hình đang chạy; giao diện đọc khi tải trang để hiện chế độ và biết có cần đăng nhập không."""
-    return {"retriever": RETRIEVER, "llm": LLM, "rerank": RERANK, "auth": auth_required()}
+    return {"retriever": "qdrant", "llm": "ollama", "rerank": RERANK, "auth": auth_required()}
 
 
 @app.post("/chat")
@@ -134,49 +129,35 @@ async def chat(req: ChatRequest, user: dict | None = Depends(chat_user)):
         conv = store.create_conversation(user["id"], req.question, req.goal)
     if conv:
         store.add_message(conv["id"], "user", req.question)
+    # Luồng của agent: còn đang chờ trả lời câu hỏi lại thì agent chạy tiếp từ đó (agent/agent.py, node clarify)
+    # Chưa đăng nhập chỉ nhận thread "anon-..." để không resume được thread "conv-..." của người khác.
+    anon = req.thread_id if req.thread_id and ANON_THREAD.fullmatch(req.thread_id) else None
+    thread_id = f"conv-{conv['id']}" if conv else anon or f"anon-{uuid.uuid4().hex}"
 
     async def gen() -> AsyncIterator[str]:
-        """Các sự kiện theo thứ tự: conversation? · query? · sources · token* · done (hoặc error)."""
-        t0 = time.perf_counter()
-        first = None
+        """Các sự kiện theo thứ tự: conversation? · route · query? · sources? · token* · clarify? · done (hoặc error)."""
         answer = ""
         meta: MessageMeta = {}
         if conv:
             yield sse({"id": conv["id"], "title": conv["title"]}, "conversation")
         try:
-            question = await generator.condense(req.question, history)
-            if question != req.question:
-                meta["query"] = question
-                yield sse({"query": question}, "query")
-
-            search_q = generator.search_query(question, req.goal)
-            if reranker:  # lấy nhiều hơn rồi để cross-encoder chọn lại (chạy trong thread vì nặng CPU/GPU)
-                found = await retrieve(search_q, req.category, k=TOP_K * 2)
-                found = await asyncio.to_thread(reranker.rerank, question, found, TOP_K)
-            else:
-                found = await retrieve(search_q, req.category, k=TOP_K)
-            points = generator.select_points(found)
-            meta["sources"] = [{
-                "title": p["title"], "url": p["url"], "category": p["category"],
-                "section_path": p.get("section_path") or [], "score": p.get("score"),
-                "snippet": p["page_content"][:280],
-            } for p in points]
-            yield sse({"intent": detect_intent(question), "sources": meta["sources"]}, "sources")
-
-            messages = generator.build_messages(question, points, goal=req.goal, history=history)
-            async for text in generator.stream(messages, n_sources=len(points)):
-                first = first or time.perf_counter()
-                answer += text
-                yield sse({"token": text})
-
-            cited, invalid = extract_citations(answer, len(points))
-            catalog = default_catalog()
-            courses = catalog.check(answer).as_dict() if catalog else None
-            done: DoneEvent = {"cited": cited, "invalid_citations": invalid, "course_check": courses,
-                    "first_token_ms": round(((first or time.perf_counter()) - t0) * 1000),
-                    "total_ms": round((time.perf_counter() - t0) * 1000)}
-            meta.update(cited=cited, courseCheck=courses, timing=done)  # type: ignore[call-arg]  # mypy chưa hỗ trợ update(**kw) cho TypedDict
-            yield sse(done, "done")
+            async for event, data in agent.run(req.question, history, filters=req.filters, goal=req.goal,
+                                               thread_id=thread_id):
+                if event == "token":  # token gửi không kèm dòng "event:" cho gọn
+                    answer += data["token"]
+                    yield sse(data)
+                    continue
+                if event == "route":
+                    meta["route"] = data["route"]
+                elif event == "query":
+                    meta["query"] = data["query"]
+                elif event == "sources":
+                    meta["sources"] = data["sources"]
+                elif event == "clarify":
+                    meta["route"] = "clarify"
+                elif event == "done":
+                    meta.update(cited=data["cited"], courseCheck=data["course_check"], timing=data)  # type: ignore[call-arg, typeddict-item]  # mypy chưa hỗ trợ update(**kw) cho TypedDict
+                yield sse(data, event)
         except Exception as e:  # báo lỗi lên giao diện thay vì cắt kết nối
             meta["error"] = f"Có lỗi ở máy chủ: {type(e).__name__}: {e}"
             yield sse({"message": f"{type(e).__name__}: {e}"}, "error")

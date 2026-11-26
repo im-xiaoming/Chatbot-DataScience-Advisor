@@ -1,24 +1,17 @@
 """Đăng ký, đăng nhập, bảo vệ /chat và lưu lịch sử hội thoại theo người dùng (api/auth.py)."""
-import os
+import pytest
 
-os.environ.setdefault("RETRIEVER", "fake")
-os.environ.setdefault("LLM", "fake")
-
-import pytest  # noqa: E402
-from fastapi.testclient import TestClient  # noqa: E402
-
-from api import auth  # noqa: E402
-from api.main import app  # noqa: E402
-from tests.test_api import events  # noqa: E402
+from api import auth
+from tests.test_api import events
 
 
 @pytest.fixture
-def client(monkeypatch, tmp_path):
+def client(app_client, monkeypatch, tmp_path):
     monkeypatch.setenv("APP_DB", str(tmp_path / "app.db"))
     monkeypatch.setenv("AUTH_REQUIRED", "1")
     monkeypatch.delenv("AUTH_SECRET", raising=False)
     auth._fails.clear()
-    return TestClient(app)
+    return app_client
 
 
 def signup(c, username="sv01", password="matkhau-an-toan"):
@@ -53,9 +46,14 @@ def test_register_login_me(client):
 
 
 @pytest.mark.parametrize("username,password", [("ab", "matkhau-an-toan"), ("có dấu", "matkhau-an-toan"),
-                                               ("sv02", "12345678"), ("sv02", "ngan")])
+                                               ("sv02", "")])
 def test_register_validates_input(client, username, password):
     assert client.post("/auth/register", json={"username": username, "password": password}).status_code == 422
+
+
+@pytest.mark.parametrize("password", ["1", "12345678", "sv03"])
+def test_register_accepts_any_password(client, password):
+    assert client.post("/auth/register", json={"username": "sv03", "password": password}).status_code == 201
 
 
 def test_login_is_locked_after_repeated_failures(client):
